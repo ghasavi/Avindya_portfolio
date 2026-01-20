@@ -1,8 +1,8 @@
-export default function Skills() {
+export default function Skills({ id }) {
   const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js", "MongoDB"];
 
   return (
-    <section className="py-20 px-6 bg-gray-50">
+    <section id={id} className="py-20 px-6 bg-gray-50">
       <h2 className="text-3xl font-bold text-center mb-6">Skills</h2>
       <div className="flex flex-wrap justify-center gap-4">
         {skills.map((skill) => (
