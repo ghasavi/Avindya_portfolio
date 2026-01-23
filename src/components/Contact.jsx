@@ -1,7 +1,53 @@
 "use client";
 
 import { Mail, Phone, MapPin, Send, MessageSquare, Sparkles, Globe, Linkedin, Github, Twitter, MailCheck } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+
+// ClientOnly wrapper to prevent hydration errors
+function ClientOnly({ children }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+  return children;
+}
+
+// Optimized FloatingIcons component
+function FloatingIcons() {
+  const [icons, setIcons] = useState([]);
+  
+  useEffect(() => {
+    // Generate icons only once on mount
+    setIcons(
+      [...Array(12)].map(() => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: 6 + Math.random() * 4,
+        delay: Math.random() * 3,
+        icon: ['💬','📧','📱','📍','📝','✉️'][Math.floor(Math.random() * 6)]
+      }))
+    );
+  }, []);
+  
+  if (icons.length === 0) return null;
+  
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {icons.map((i, idx) => (
+        <div
+          key={idx}
+          className="absolute text-2xl md:text-3xl opacity-5"
+          style={{
+            left: `${i.left}%`,
+            top: `${i.top}%`,
+            animation: `iconFloat ${i.duration}s ease-in-out ${i.delay}s infinite`
+          }}
+        >
+          {i.icon}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Contact({ id }) {
   const [formData, setFormData] = useState({
@@ -120,23 +166,10 @@ export default function Contact({ id }) {
         ))}
       </div>
 
-      {/* Floating Message Icons */}
-      <div className="absolute inset-0 overflow-hidden">
-        {['💬', '📧', '📱', '📍', '📝', '✉️'].map((icon, i) => (
-          <div
-            key={i}
-            className="absolute text-2xl opacity-5"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `iconFloat ${6 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 3}s`
-            }}
-          >
-            {icon}
-          </div>
-        ))}
-      </div>
+      {/* Floating Message Icons - Wrapped in ClientOnly */}
+      <ClientOnly>
+        <FloatingIcons />
+      </ClientOnly>
 
       <div className="relative max-w-6xl mx-auto z-10">
         {/* Section Header */}
@@ -254,18 +287,19 @@ export default function Contact({ id }) {
               <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D]/10 via-transparent to-[#009F9D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               
               {/* Animated Form Particles */}
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-[1px] h-[1px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    animation: `formParticle ${2 + Math.random() * 2}s ease-in-out infinite`,
-                    animationDelay: `${i * 0.3}s`
-                  }}
-                />
-              ))}
+              <ClientOnly>
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-[1px] h-[1px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      animation: `formParticle ${2 + Math.random() * 2}s ease-in-out ${i * 0.3}s infinite`
+                    }}
+                  />
+                ))}
+              </ClientOnly>
             </div>
             
             <div className="relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm group-hover:border-[#009F9D]/50 transition-all duration-500">
@@ -393,7 +427,7 @@ export default function Contact({ id }) {
       </div>
 
       {/* Custom Animations */}
-      <style jsx>{`
+      <style >{`
         @keyframes ripple {
           0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
           100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }

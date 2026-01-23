@@ -1,7 +1,89 @@
 "use client";
 
 import { ExternalLink, Github, Eye, Sparkles, Zap, Code2, Layers, ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// ClientOnly wrapper component
+function ClientOnly({ children }) {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+  return children;
+}
+
+// FloatingCodeBlocks component
+function FloatingCodeBlocks() {
+  const [codeBlocks, setCodeBlocks] = useState([]);
+
+  useEffect(() => {
+    setCodeBlocks(
+      [...Array(8)].map((_, i) => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 3,
+        duration: 5 + Math.random() * 5
+      }))
+    );
+  }, []);
+
+  if (codeBlocks.length === 0) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
+      {codeBlocks.map((block, i) => (
+        <div
+          key={i}
+          className="absolute font-mono text-[#009F9D] text-sm"
+          style={{
+            left: `${block.left}%`,
+            top: `${block.top}%`,
+            animation: `codeFloat ${block.duration}s linear ${block.delay}s infinite`
+          }}
+        >
+          {`<Project ${i + 1} />`}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// FloatingTechTags component
+function FloatingTechTags({ tech }) {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    setTags(
+      tech.map((_, techIndex) => ({
+        left: 10 + techIndex * 15,
+        top: 10 + techIndex * 10,
+        delay: techIndex * 0.2,
+        duration: 3 + techIndex * 0.5
+      }))
+    );
+  }, [tech]);
+
+  return (
+    <>
+      {tech.map((techItem, techIndex) => (
+        <div
+          key={techItem}
+          className="absolute px-2 py-1 bg-black/80 backdrop-blur-sm border border-[#009F9D]/30 rounded-lg text-xs text-[#009F9D] opacity-0 group-hover:opacity-100 transition-all duration-500"
+          style={{
+            left: `${tags[techIndex]?.left || 10 + techIndex * 15}%`,
+            top: `${tags[techIndex]?.top || 10 + techIndex * 10}%`,
+            animation: `tagFloat ${tags[techIndex]?.duration || 3 + techIndex * 0.5}s ease-in-out ${tags[techIndex]?.delay || techIndex * 0.2}s infinite`
+          }}
+        >
+          {techItem}
+        </div>
+      ))}
+    </>
+  );
+}
 
 export default function Projects({ id }) {
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -91,23 +173,10 @@ export default function Projects({ id }) {
       <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"></div>
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#009F9D]/10 to-transparent"></div>
       
-      {/* Floating Code Blocks */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute font-mono text-[#009F9D] text-sm"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `codeFloat ${5 + Math.random() * 5}s linear infinite`,
-              animationDelay: `${Math.random() * 3}s`
-            }}
-          >
-            {`<Project ${i + 1} />`}
-          </div>
-        ))}
-      </div>
+      {/* Floating Code Blocks - Wrapped in ClientOnly */}
+      <ClientOnly>
+        <FloatingCodeBlocks />
+      </ClientOnly>
 
       {/* Animated Grid */}
       <div 
@@ -187,21 +256,10 @@ export default function Projects({ id }) {
               <div className="absolute -inset-4 rounded-3xl overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#009F9D]/10 via-transparent to-[#009F9D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 
-                {/* Floating Tech Tags */}
-                {project.tech.map((tech, techIndex) => (
-                  <div
-                    key={tech}
-                    className="absolute px-2 py-1 bg-black/80 backdrop-blur-sm border border-[#009F9D]/30 rounded-lg text-xs text-[#009F9D] opacity-0 group-hover:opacity-100 transition-all duration-500"
-                    style={{
-                      left: `${10 + techIndex * 15}%`,
-                      top: `${10 + techIndex * 10}%`,
-                      animation: `tagFloat ${3 + techIndex * 0.5}s ease-in-out infinite`,
-                      animationDelay: `${techIndex * 0.2}s`
-                    }}
-                  >
-                    {tech}
-                  </div>
-                ))}
+                {/* Floating Tech Tags - Wrapped in ClientOnly */}
+                <ClientOnly>
+                  <FloatingTechTags tech={project.tech} />
+                </ClientOnly>
               </div>
               
               {/* Glowing Border */}
@@ -365,7 +423,7 @@ export default function Projects({ id }) {
       </div>
 
       {/* Custom Animations */}
-      <style jsx>{`
+      <style >{`
         @keyframes gridMove {
           0% { transform: translateY(0) translateX(0); }
           100% { transform: translateY(60px) translateX(60px); }

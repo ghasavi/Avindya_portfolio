@@ -1,7 +1,89 @@
 "use client";
 
 import { GraduationCap, BookOpen, Award, Calendar, MapPin, Sparkles, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// ClientOnly wrapper component
+function ClientOnly({ children }) {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+  return children;
+}
+
+// FloatingCaps component
+function FloatingCaps() {
+  const [caps, setCaps] = useState([]);
+
+  useEffect(() => {
+    setCaps(
+      [...Array(6)].map(() => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        fontSize: 2 + Math.random() * 2,
+        delay: Math.random() * 5,
+        duration: 8 + Math.random() * 8
+      }))
+    );
+  }, []);
+
+  if (caps.length === 0) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {caps.map((cap, i) => (
+        <div
+          key={i}
+          className="absolute text-[#009F9D]/10"
+          style={{
+            left: `${cap.left}%`,
+            top: `${cap.top}%`,
+            fontSize: `${cap.fontSize}rem`,
+            animation: `capFloat ${cap.duration}s linear ${cap.delay}s infinite`
+          }}
+        >
+          🎓
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// KnowledgeNodes component
+function KnowledgeNodes() {
+  const [nodes, setNodes] = useState([]);
+
+  useEffect(() => {
+    setNodes(
+      [...Array(4)].map((_, i) => ({
+        left: 20 + i * 20,
+        top: 10 + i * 15,
+        delay: i * 0.3,
+        duration: 2 + i * 0.5
+      }))
+    );
+  }, []);
+
+  return (
+    <>
+      {nodes.map((node, i) => (
+        <div
+          key={i}
+          className="absolute w-3 h-3 rounded-full bg-[#009F9D] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            left: `${node.left}%`,
+            top: `${node.top}%`,
+            animation: `nodePulse ${node.duration}s ease-in-out ${node.delay}s infinite`
+          }}
+        ></div>
+      ))}
+    </>
+  );
+}
 
 export default function Education({ id }) {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -76,24 +158,10 @@ export default function Education({ id }) {
       <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"></div>
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#009F9D]/10 to-transparent"></div>
       
-      {/* Animated Graduation Caps */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-[#009F9D]/10"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              fontSize: `${2 + Math.random() * 2}rem`,
-              animation: `capFloat ${8 + Math.random() * 8}s linear infinite`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          >
-            🎓
-          </div>
-        ))}
-      </div>
+      {/* Animated Graduation Caps - Wrapped in ClientOnly */}
+      <ClientOnly>
+        <FloatingCaps />
+      </ClientOnly>
 
       {/* Animated Knowledge Graph */}
       <div className="absolute inset-0 opacity-10">
@@ -189,19 +257,10 @@ export default function Education({ id }) {
               <div className="absolute -inset-4 rounded-3xl overflow-hidden">
                 <div className={`absolute inset-0 bg-gradient-to-br ${edu.color} opacity-0 group-hover:opacity-10 transition-opacity duration-700`}></div>
                 
-                {/* Animated Knowledge Nodes */}
-                {[...Array(4)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-3 h-3 rounded-full bg-[#009F9D] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      left: `${20 + i * 20}%`,
-                      top: `${10 + i * 15}%`,
-                      animation: `nodePulse ${2 + i * 0.5}s ease-in-out infinite`,
-                      animationDelay: `${i * 0.3}s`
-                    }}
-                  ></div>
-                ))}
+                {/* Animated Knowledge Nodes - Wrapped in ClientOnly */}
+                <ClientOnly>
+                  <KnowledgeNodes />
+                </ClientOnly>
               </div>
               
               {/* Glowing Border */}
@@ -372,7 +431,7 @@ export default function Education({ id }) {
       </div>
 
       {/* Custom Animations */}
-      <style jsx>{`
+      <style >{`
         @keyframes capFloat {
           0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.1; }
           50% { transform: translateY(-40px) translateX(20px) rotate(10deg); opacity: 0.05; }

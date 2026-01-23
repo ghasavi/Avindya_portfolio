@@ -1,7 +1,89 @@
 "use client";
 
 import { Code2, Layout, Server, Database, Wrench, Zap, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// ClientOnly wrapper component
+function ClientOnly({ children }) {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+  return children;
+}
+
+// FloatingCodeIcons component
+function FloatingCodeIcons() {
+  const [icons, setIcons] = useState([]);
+
+  useEffect(() => {
+    const codeChars = ['{', '}', '<', '>', ';', '=', '(', ')'];
+    setIcons(
+      codeChars.map((char, i) => ({
+        char,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 2,
+        duration: 4 + Math.random() * 4
+      }))
+    );
+  }, []);
+
+  if (icons.length === 0) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {icons.map((icon, i) => (
+        <div
+          key={i}
+          className="absolute text-[#009F9D]/20 text-2xl font-mono"
+          style={{
+            left: `${icon.left}%`,
+            top: `${icon.top}%`,
+            animation: `iconFloat ${icon.duration}s ease-in-out ${icon.delay}s infinite`
+          }}
+        >
+          {icon.char}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// AnimatedParticles component
+function AnimatedParticles() {
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    setParticles(
+      [...Array(6)].map((_, i) => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: i * 0.3,
+        duration: 2 + Math.random() * 2
+      }))
+    );
+  }, []);
+
+  return (
+    <>
+      {particles.map((particle, i) => (
+        <div
+          key={i}
+          className="absolute w-[2px] h-[2px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            animation: `particleFloat ${particle.duration}s ease-in-out ${particle.delay}s infinite`
+          }}
+        />
+      ))}
+    </>
+  );
+}
 
 export default function Skills({ id }) {
   const [hoveredCategory, setHoveredCategory] = useState(null);
@@ -82,23 +164,10 @@ export default function Skills({ id }) {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-[#009F9D] to-transparent"></div>
       </div>
 
-      {/* Floating Code Icons */}
-      <div className="absolute inset-0 overflow-hidden">
-        {['{', '}', '<', '>', ';', '=', '(', ')'].map((char, i) => (
-          <div
-            key={i}
-            className="absolute text-[#009F9D]/20 text-2xl font-mono"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `iconFloat ${4 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`
-            }}
-          >
-            {char}
-          </div>
-        ))}
-      </div>
+      {/* Floating Code Icons - Wrapped in ClientOnly */}
+      <ClientOnly>
+        <FloatingCodeIcons />
+      </ClientOnly>
 
       <div className="relative max-w-6xl mx-auto z-10">
         {/* Section Header */}
@@ -135,19 +204,10 @@ export default function Skills({ id }) {
               <div className="absolute -inset-4 rounded-2xl overflow-hidden">
                 <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>
                 
-                {/* Animated Particles */}
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-[2px] h-[2px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      animation: `particleFloat ${2 + Math.random() * 2}s ease-in-out infinite`,
-                      animationDelay: `${i * 0.3}s`
-                    }}
-                  />
-                ))}
+                {/* Animated Particles - Wrapped in ClientOnly */}
+                <ClientOnly>
+                  <AnimatedParticles />
+                </ClientOnly>
               </div>
               
               {/* Glowing Border */}
@@ -314,7 +374,7 @@ export default function Skills({ id }) {
       </div>
 
       {/* Custom Animations */}
-      <style jsx>{`
+      <style >{`
         @keyframes iconFloat {
           0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.2; }
           50% { transform: translateY(-20px) translateX(10px) rotate(10deg); opacity: 0.1; }

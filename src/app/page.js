@@ -59,11 +59,11 @@ export default function Home() {
                 key={particle.id}
                 className="absolute text-[#009F9D]/30 text-xs font-mono"
                 style={{
-                  left: `${particle.left}%`,
-                  top: `${particle.top}%`,
-                  animation: `float ${particle.duration}s ease-in-out infinite`,
-                  animationDelay: `${particle.delay}s`
-                }}
+  left: `${particle.left}%`,
+  top: `${particle.top}%`,
+  animation: `float ${particle.duration}s ease-in-out ${particle.delay}s infinite`
+}}
+
               >
                 {particle.text}
               </div>

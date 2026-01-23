@@ -1,7 +1,53 @@
 "use client";
 
 import { Cpu, Target, Rocket, Zap, User, Brain, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// ClientOnly wrapper to prevent hydration errors
+function ClientOnly({ children }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+  return children;
+}
+
+// Optimized FloatingParticles component
+function FloatingParticles() {
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    // Generate random positions after mount
+    setParticles(
+      [...Array(16)].map(() => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 2,
+        size: 1 + Math.random() * 2, // Random size between 1-3px
+        duration: 3 + Math.random() * 4
+      }))
+    );
+  }, []);
+
+  if (particles.length === 0) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((p, i) => (
+        <div
+          key={i}
+          className="absolute bg-[#009F9D] rounded-full"
+          style={{
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            animation: `particleFloat ${p.duration}s ease-in-out ${p.delay}s infinite`
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function About({ id }) {
   const [hoveredBox, setHoveredBox] = useState(null);
@@ -43,21 +89,10 @@ export default function About({ id }) {
         }}
       ></div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-[2px] h-[2px] bg-[#009F9D] rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `particleFloat ${3 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
+      {/* Floating Particles - Wrapped in ClientOnly */}
+      <ClientOnly>
+        <FloatingParticles />
+      </ClientOnly>
 
       <div className="relative max-w-6xl mx-auto z-10">
         {/* Section Header */}
@@ -144,19 +179,20 @@ export default function About({ id }) {
                   <div className="absolute -inset-3 rounded-xl overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#009F9D]/10 via-transparent to-[#009F9D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
-                    {/* Animated Particles */}
-                    {[...Array(8)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-[1px] h-[1px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        style={{
-                          left: `${Math.random() * 100}%`,
-                          top: `${Math.random() * 100}%`,
-                          animation: `particleMove ${1 + Math.random() * 2}s linear infinite`,
-                          animationDelay: `${i * 0.2}s`
-                        }}
-                      />
-                    ))}
+                    {/* Animated Particles - Wrapped in ClientOnly */}
+                    <ClientOnly>
+                      {[...Array(8)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute w-[1px] h-[1px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            animation: `particleMove ${1 + Math.random() * 2}s linear ${i * 0.2}s infinite`
+                          }}
+                        />
+                      ))}
+                    </ClientOnly>
                   </div>
                   
                   {/* Stats Box Content */}
@@ -320,7 +356,7 @@ export default function About({ id }) {
       </div>
 
       {/* Custom Animations */}
-      <style jsx>{`
+      <style >{`
         @keyframes gridMove {
           0% { transform: translateY(0) translateX(0); }
           100% { transform: translateY(50px) translateX(50px); }
@@ -328,7 +364,7 @@ export default function About({ id }) {
 
         @keyframes particleFloat {
           0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
-          50% { transform: translateY(-15px) translateX(5px); opacity: 1; }
+          50% { transform: translateY(-15px) translateX(5px); opacity: 0.8; }
         }
 
         @keyframes particleMove {
