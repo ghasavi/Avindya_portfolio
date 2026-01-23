@@ -1,37 +1,408 @@
+"use client";
+
+import { GraduationCap, BookOpen, Award, Calendar, MapPin, Sparkles, TrendingUp } from "lucide-react";
+import { useState } from "react";
+
 export default function Education({ id }) {
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeTimeline, setActiveTimeline] = useState(null);
+
   const educationList = [
     {
-      degree: "Bachelor of Science Honours in Information Technology",
+      degree: "Bachelor of Science Honours in Software Engineering",
       institution: "SLIIT",
       year: "2023 - Present",
-      details: "Currently pursuing an undergraduate degree with focus on Web Development, Data Structures, and Software Design.",
+      duration: "4 Years",
+      details: "Pursuing an undergraduate degree with specialized focus on Full-Stack Development, Machine Learning, Cloud Computing, and Software Architecture. Maintaining a 3.8+ GPA.",
+      achievements: [
+        "Dean's List 2023",
+        "Best Web Project Award",
+        "AI Research Internship"
+      ],
+      courses: ["Advanced Web Technologies", "Data Structures", "Software Design", "Database Systems", "Cloud Architecture"],
+      location: "Malabe, Sri Lanka",
+      color: "from-[#009F9D] to-[#007F7D]",
+      icon: <GraduationCap className="w-6 h-6" />
     },
     {
       degree: "Advanced Level",
-      institution: "G/Prajapthi Girls' College",
+      institution: "G/Prajapathi Girls' College",
       year: "2021 - 2023",
-      details: "Completed A/Ls in Science Stream with Mathematics as main subject.",
+      duration: "2 Years",
+      details: "Completed Advanced Levels in Physical Science Stream with distinction in Mathematics. Active participation in science fairs and coding competitions.",
+      achievements: [
+        "District Rank Holder",
+        "Science Fair Winner",
+        "Math Olympiad Finalist"
+      ],
+      courses: ["Combined Mathematics", "Physics", "Chemistry", "Information Technology"],
+      location: "Homagama, Sri Lanka",
+      color: "from-purple-500 to-pink-500",
+      icon: <BookOpen className="w-6 h-6" />
     },
-    // Add more education items if needed
+    {
+      degree: "Professional Certifications",
+      institution: "Online Platforms",
+      year: "2022 - Present",
+      duration: "Continuous",
+      details: "Complementing formal education with industry-recognized certifications in modern web technologies and development practices.",
+      achievements: [
+        "Google Cloud Certified",
+        "AWS Fundamentals",
+        "React Advanced Concepts"
+      ],
+      courses: ["Frontend Development", "Backend Development", "DevOps", "UI/UX Design"],
+      location: "Online",
+      color: "from-orange-500 to-yellow-500",
+      icon: <Award className="w-6 h-6" />
+    },
+  ];
+
+  const timeline = [
+    { year: "2021", event: "Started A/L Studies", icon: "🎓" },
+    { year: "2022", event: "First Web Development Project", icon: "💻" },
+    { year: "2023", event: "Started University", icon: "🏫" },
+    { year: "2024", event: "Professional Certifications", icon: "📜" },
+    { year: "2025", event: "Industry Internship", icon: "👨‍💼" },
+    { year: "2026", event: "Expected Graduation", icon: "🎉" },
   ];
 
   return (
-    <section id={id} className="py-20 px-6 bg-gray-100">
-      <h2 className="text-3xl font-bold text-center mb-10">Education</h2>
-
-      <div className="flex flex-col md:flex-row flex-wrap justify-center gap-6">
-        {educationList.map((edu) => (
+    <section 
+      id={id} 
+      className="relative py-20 px-6 md:px-10 overflow-hidden"
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"></div>
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#009F9D]/10 to-transparent"></div>
+      
+      {/* Animated Graduation Caps */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(6)].map((_, i) => (
           <div
-            key={edu.degree}
-            className="w-80 bg-white rounded-lg shadow-lg p-6 flex flex-col"
+            key={i}
+            className="absolute text-[#009F9D]/10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              fontSize: `${2 + Math.random() * 2}rem`,
+              animation: `capFloat ${8 + Math.random() * 8}s linear infinite`,
+              animationDelay: `${Math.random() * 5}s`
+            }}
           >
-            <h3 className="text-xl font-semibold mb-1">{edu.degree}</h3>
-            <p className="text-gray-600 mb-1">{edu.institution}</p>
-            <p className="text-gray-500 mb-3 text-sm">{edu.year}</p>
-            <p className="text-gray-700 text-sm">{edu.details}</p>
+            🎓
           </div>
         ))}
       </div>
+
+      {/* Animated Knowledge Graph */}
+      <div className="absolute inset-0 opacity-10">
+        <svg width="100%" height="100%">
+          <defs>
+            <linearGradient id="graphGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#009F9D" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#00FFFC" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M50,50 C150,50 150,150 250,150 C350,150 350,250 450,250"
+            stroke="url(#graphGradient)"
+            strokeWidth="1"
+            fill="none"
+            className="animate-draw"
+          />
+        </svg>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#009F9D]/20 to-transparent border border-[#009F9D]/30 px-4 py-2 rounded-full mb-4 backdrop-blur-sm">
+            <GraduationCap className="w-4 h-4 text-[#009F9D]" />
+            <span className="text-gray-300 text-sm font-medium tracking-wider">ACADEMIC JOURNEY</span>
+            <Sparkles className="w-3 h-3 text-[#009F9D] animate-pulse" />
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-white">Education & </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] animate-gradient-x">
+              Learning
+            </span>
+          </h2>
+          
+          <div className="w-24 h-1 bg-gradient-to-r from-[#009F9D] to-transparent mx-auto rounded-full animate-pulse mb-6"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            My academic journey through formal education and continuous learning in the field of technology
+          </p>
+        </div>
+
+        {/* Education Timeline */}
+        <div className="relative mb-16">
+          {/* Timeline Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#009F9D] via-[#009F9D]/50 to-transparent"></div>
+          
+          <div className="space-y-12">
+            {timeline.map((item, index) => (
+              <div 
+                key={item.year}
+                className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                onMouseEnter={() => setActiveTimeline(index)}
+                onMouseLeave={() => setActiveTimeline(null)}
+              >
+                {/* Timeline Dot */}
+                <div className={`absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-gray-900 bg-gradient-to-br ${index <= 2 ? 'from-[#009F9D] to-[#007F7D]' : 'from-gray-800 to-gray-700'} transition-all duration-300 ${activeTimeline === index ? 'scale-125 shadow-[0_0_20px_rgba(0,159,157,0.5)]' : ''}`}></div>
+                
+                {/* Timeline Content */}
+                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
+                  <div className="relative group">
+                    <div className={`absolute -inset-4 rounded-xl bg-gradient-to-r ${index % 2 === 0 ? 'from-[#009F9D]/10 to-transparent' : 'from-transparent to-[#009F9D]/10'} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                    
+                    <div className="relative p-6 rounded-xl bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm group-hover:border-[#009F9D]/30 transition-all duration-500">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="text-2xl">{item.icon}</div>
+                        <div>
+                          <div className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#009F9D] transition-all duration-300">
+                            {item.year}
+                          </div>
+                          <div className="text-sm text-gray-400">{item.event}</div>
+                        </div>
+                      </div>
+                      <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-gray-800 to-transparent group-hover:via-[#009F9D] transition-all duration-500"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {educationList.map((edu, index) => (
+            <div 
+              key={edu.degree}
+              className="relative group"
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {/* Animated Background */}
+              <div className="absolute -inset-4 rounded-3xl overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-br ${edu.color} opacity-0 group-hover:opacity-10 transition-opacity duration-700`}></div>
+                
+                {/* Animated Knowledge Nodes */}
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-3 h-3 rounded-full bg-[#009F9D] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      left: `${20 + i * 20}%`,
+                      top: `${10 + i * 15}%`,
+                      animation: `nodePulse ${2 + i * 0.5}s ease-in-out infinite`,
+                      animationDelay: `${i * 0.3}s`
+                    }}
+                  ></div>
+                ))}
+              </div>
+              
+              {/* Glowing Border */}
+              <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-[#009F9D] to-transparent opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-500"></div>
+              
+              {/* Education Card */}
+              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm group-hover:border-[#009F9D]/50 transition-all duration-500 h-full">
+                {/* Header */}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-gray-800 to-black border border-gray-700 group-hover:border-[#009F9D] transition-all duration-300">
+                      <div className="text-[#009F9D] group-hover:text-[#00FFFC] transition-colors duration-300">
+                        {edu.icon}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="px-3 py-1 rounded-full bg-gradient-to-r from-gray-800 to-black border border-gray-700 text-xs text-gray-300">
+                        {edu.duration}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#009F9D] transition-all duration-300">
+                    {edu.degree}
+                  </h3>
+                  
+                  <div className="flex items-center gap-2 text-gray-400 mb-4">
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-sm">{edu.institution}</span>
+                  </div>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-[#009F9D]" />
+                      <span className="text-sm text-gray-300">{edu.year}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4 text-[#009F9D]" />
+                      <span className="text-xs text-gray-400">Progress</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Details */}
+                <div className="px-6 pb-6">
+                  <p className="text-gray-400 text-sm mb-6 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                    {edu.details}
+                  </p>
+                  
+                  {/* Achievements */}
+                  <div className="mb-6">
+                    <div className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                      <Award className="w-4 h-4 text-[#009F9D]" />
+                      Key Achievements
+                    </div>
+                    <div className="space-y-2">
+                      {edu.achievements.map((achievement, i) => (
+                        <div 
+                          key={i}
+                          className="flex items-center gap-2 text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#009F9D] group-hover:animate-pulse"></div>
+                          {achievement}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Courses */}
+                  <div>
+                    <div className="text-sm font-semibold text-white mb-3">Relevant Courses</div>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.courses.map((course, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 rounded-lg bg-gradient-to-r from-black/50 to-gray-900/50 border border-gray-800 text-gray-300 text-xs hover:border-[#009F9D] hover:text-[#009F9D] transition-all duration-300 cursor-default"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Location Footer */}
+                <div className="px-6 py-4 border-t border-gray-800 bg-gradient-to-r from-transparent via-gray-900/50 to-transparent">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-[#009F9D]" />
+                      <span className="text-sm text-gray-400">{edu.location}</span>
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {edu.year.includes('Present') ? 'Currently Studying' : 'Completed'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Learning Stats */}
+        <div className="relative group mb-16">
+          <div className="absolute -inset-4 rounded-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D]/10 via-transparent to-[#009F9D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          </div>
+          
+          <div className="relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-white mb-8 text-center group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#009F9D] group-hover:to-[#00FFFC] transition-all duration-300">
+              Learning Statistics
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">3.8+</div>
+                <div className="text-gray-400 text-sm">Current GPA</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">50+</div>
+                <div className="text-gray-400 text-sm">Courses Completed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">1000+</div>
+                <div className="text-gray-400 text-sm">Learning Hours</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">15+</div>
+                <div className="text-gray-400 text-sm">Certifications</div>
+              </div>
+            </div>
+            
+            <div className="mt-8 pt-6 border-t border-gray-800">
+              <div className="text-center">
+                <div className="inline-flex items-center gap-2 text-gray-400">
+                  <span className="w-3 h-3 rounded-full bg-[#009F9D] animate-pulse"></span>
+                  <span className="text-sm">Continuously learning and growing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <p className="text-gray-400 mb-6">Interested in my academic journey?</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact"
+              className="relative inline-flex items-center gap-2 px-8 py-3 rounded-lg overflow-hidden group/cta"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/cta:opacity-0 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
+              <span className="relative text-white font-semibold">Get Transcript</span>
+              <BookOpen className="relative w-5 h-5 text-white" />
+            </a>
+            
+            <a
+              href="#projects"
+              className="relative inline-flex items-center gap-2 px-8 py-3 rounded-lg overflow-hidden group/cta2"
+            >
+              <div className="absolute inset-0 border-2 border-[#009F9D] opacity-100 group-hover/cta2:opacity-0 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-r from-[#009F9D]/20 to-transparent opacity-0 group-hover/cta2:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative text-[#009F9D] group-hover/cta2:text-white font-semibold transition-colors duration-500">See Projects</span>
+              <TrendingUp className="relative w-5 h-5 text-[#009F9D] group-hover/cta2:text-white transition-colors duration-500" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Custom Animations */}
+      <style jsx>{`
+        @keyframes capFloat {
+          0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.1; }
+          50% { transform: translateY(-40px) translateX(20px) rotate(10deg); opacity: 0.05; }
+        }
+
+        @keyframes nodePulse {
+          0%, 100% { transform: scale(1); opacity: 0.5; }
+          50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        @keyframes draw {
+          to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+
+        .animate-draw {
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+          animation: draw 10s linear infinite;
+        }
+
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 3s ease infinite;
+        }
+      `}</style>
     </section>
   );
 }
