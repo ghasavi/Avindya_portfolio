@@ -1,9 +1,9 @@
 "use client";
 
-import { Mail, Phone, MapPin, Send, MessageSquare, Sparkles, Globe, Linkedin, Github, Twitter, MailCheck } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, Sparkles, Globe, Linkedin, Github, MailCheck } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
-// ClientOnly wrapper to prevent hydration errors
+// ClientOnly wrapper
 function ClientOnly({ children }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -11,37 +11,27 @@ function ClientOnly({ children }) {
   return children;
 }
 
-// Optimized FloatingIcons component
+// Floating icons
 function FloatingIcons() {
   const [icons, setIcons] = useState([]);
   
   useEffect(() => {
-    // Generate icons only once on mount
-    setIcons(
-      [...Array(12)].map(() => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        duration: 6 + Math.random() * 4,
-        delay: Math.random() * 3,
-        icon: ['💬','📧','📱','📍','📝','✉️'][Math.floor(Math.random() * 6)]
-      }))
-    );
+    setIcons([...Array(12)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 6 + Math.random() * 4,
+      delay: Math.random() * 3,
+      icon: ['💬','📧','📱','📍','📝','✉️'][Math.floor(Math.random() * 6)]
+    })));
   }, []);
   
-  if (icons.length === 0) return null;
+  if (!icons.length) return null;
   
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {icons.map((i, idx) => (
-        <div
-          key={idx}
-          className="absolute text-2xl md:text-3xl opacity-5"
-          style={{
-            left: `${i.left}%`,
-            top: `${i.top}%`,
-            animation: `iconFloat ${i.duration}s ease-in-out ${i.delay}s infinite`
-          }}
-        >
+        <div key={idx} className="absolute text-2xl md:text-3xl opacity-5"
+             style={{ left: `${i.left}%`, top: `${i.top}%`, animation: `iconFloat ${i.duration}s ease-in-out ${i.delay}s infinite` }}>
           {i.icon}
         </div>
       ))}
@@ -50,13 +40,10 @@ function FloatingIcons() {
 }
 
 export default function Contact({ id }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
   const formRef = useRef(null);
 
   const contactInfo = [
@@ -70,15 +57,15 @@ export default function Contact({ id }) {
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Phone",
-      value: "+94 71 248 5690",
-      link: "tel:+94712485690",
+      value: "+94 77 397 7465",
+      link: "tel:+94773977465",
       color: "from-purple-500 to-pink-500"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
-      value: "Homagama, Sri Lanka",
-      link: "https://maps.google.com/?q=Homagama,Sri+Lanka",
+      value: "Galle, Sri Lanka",
+      link: "https://maps.google.com/?q=Galle,Sri+Lanka",
       color: "from-orange-500 to-yellow-500"
     }
   ];
@@ -97,12 +84,6 @@ export default function Contact({ id }) {
       color: "hover:bg-blue-600 hover:text-white"
     },
     {
-      icon: <Twitter className="w-5 h-5" />,
-      name: "Twitter",
-      link: "#",
-      color: "hover:bg-sky-500 hover:text-white"
-    },
-    {
       icon: <Globe className="w-5 h-5" />,
       name: "Portfolio",
       link: "#",
@@ -110,43 +91,52 @@ export default function Contact({ id }) {
     }
   ];
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
     try {
-      const response = await fetch("https://formspree.io/f/xeeeyzwr", {
+      const form = { 
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        access_key: "a0a70010-56a7-4283-bb29-eb5a79b90c86",
+        to: "ghasavindya@gmail.com"
+      };
+
+      console.log("Submitting form...", form);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
       });
 
-      if (response.ok) {
+      console.log("Response status:", response.status);
+      const data = await response.json();
+      console.log("Web3Forms data:", data);
+
+      if (data.success) {
         setIsSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
         setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        setError(data.message || "Failed to send message.");
+        console.error("Web3Forms error:", data);
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch (err) {
+      setError("Network error.");
+      console.error("Fetch failed:", err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section 
-      id={id} 
-      className="relative py-20 px-6 md:px-10 overflow-hidden"
-    >
+    <section id={id} className="relative py-20 px-6 md:px-10 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900"></div>
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#009F9D]/10 to-transparent"></div>
@@ -166,7 +156,7 @@ export default function Contact({ id }) {
         ))}
       </div>
 
-      {/* Floating Message Icons - Wrapped in ClientOnly */}
+      {/* Floating Message Icons */}
       <ClientOnly>
         <FloatingIcons />
       </ClientOnly>
@@ -368,6 +358,12 @@ export default function Contact({ id }) {
                     <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#009F9D] to-transparent transform scale-x-0 group-hover/input:scale-x-100 transition-transform duration-500"></div>
                   </div>
                   
+                  {error && (
+                    <div className="mt-2 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-sm">
+                      {error}
+                    </div>
+                  )}
+                  
                   <div className="relative group/button">
                     <button
                       type="submit"
@@ -427,7 +423,7 @@ export default function Contact({ id }) {
       </div>
 
       {/* Custom Animations */}
-      <style >{`
+      <style jsx>{`
         @keyframes ripple {
           0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
           100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }

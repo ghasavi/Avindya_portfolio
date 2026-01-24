@@ -95,13 +95,8 @@ export default function Education({ id }) {
       institution: "SLIIT",
       year: "2023 - Present",
       duration: "4 Years",
-      details: "Pursuing an undergraduate degree with specialized focus on Full-Stack Development, Machine Learning, Cloud Computing, and Software Architecture. Maintaining a 3.8+ GPA.",
-      achievements: [
-        "Dean's List 2023",
-        "Best Web Project Award",
-        "AI Research Internship"
-      ],
-      courses: ["Advanced Web Technologies", "Data Structures", "Software Design", "Database Systems", "Cloud Architecture"],
+      details: "Pursuing an undergraduate degree with specialized focus on Full-Stack Development, Machine Learning, Cloud Computing, and Software Architecture.",
+      courses: ["Advanced Web Technologies", "Data Structures", "Software Design", "Database Systems"],
       location: "Malabe, Sri Lanka",
       color: "from-[#009F9D] to-[#007F7D]",
       icon: <GraduationCap className="w-6 h-6" />
@@ -111,14 +106,13 @@ export default function Education({ id }) {
       institution: "G/Prajapathi Girls' College",
       year: "2021 - 2023",
       duration: "2 Years",
-      details: "Completed Advanced Levels in Physical Science Stream with distinction in Mathematics. Active participation in science fairs and coding competitions.",
-      achievements: [
-        "District Rank Holder",
-        "Science Fair Winner",
-        "Math Olympiad Finalist"
-      ],
-      courses: ["Combined Mathematics", "Physics", "Chemistry", "Information Technology"],
-      location: "Homagama, Sri Lanka",
+      details: "Completed Advanced Levels in Physical Science Stream with distinction in Mathematics. ",
+       attempts: [
+    "1st Attempt: 2C, 1S",
+    "2nd Attempt: 1C, 2S"
+  ],
+      courses: ["Combined Mathematics", "Physics", "Chemistry"],
+      location: "Galle, Sri Lanka",
       color: "from-purple-500 to-pink-500",
       icon: <BookOpen className="w-6 h-6" />
     },
@@ -128,11 +122,6 @@ export default function Education({ id }) {
       year: "2022 - Present",
       duration: "Continuous",
       details: "Complementing formal education with industry-recognized certifications in modern web technologies and development practices.",
-      achievements: [
-        "Google Cloud Certified",
-        "AWS Fundamentals",
-        "React Advanced Concepts"
-      ],
       courses: ["Frontend Development", "Backend Development", "DevOps", "UI/UX Design"],
       location: "Online",
       color: "from-orange-500 to-yellow-500",
@@ -141,12 +130,10 @@ export default function Education({ id }) {
   ];
 
   const timeline = [
-    { year: "2021", event: "Started A/L Studies", icon: "🎓" },
-    { year: "2022", event: "First Web Development Project", icon: "💻" },
+    { year: "2020", event: "Started A/L Studies", icon: "🎓" },
     { year: "2023", event: "Started University", icon: "🏫" },
-    { year: "2024", event: "Professional Certifications", icon: "📜" },
-    { year: "2025", event: "Industry Internship", icon: "👨‍💼" },
-    { year: "2026", event: "Expected Graduation", icon: "🎉" },
+    { year: "2026", event: "Expected Industry Internship", icon: "👨‍💼" },
+    { year: "2027", event: "Expected Graduation", icon: "🎉" },
   ];
 
   return (
@@ -310,24 +297,20 @@ export default function Education({ id }) {
                     {edu.details}
                   </p>
                   
-                  {/* Achievements */}
-                  <div className="mb-6">
-                    <div className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                      <Award className="w-4 h-4 text-[#009F9D]" />
-                      Key Achievements
-                    </div>
-                    <div className="space-y-2">
-                      {edu.achievements.map((achievement, i) => (
-                        <div 
-                          key={i}
-                          className="flex items-center gap-2 text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#009F9D] group-hover:animate-pulse"></div>
-                          {achievement}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  {/* Attempts (A/L only) */}
+{edu.attempts && (
+  <div className="mb-6 space-y-1">
+    {edu.attempts.map((attempt, i) => (
+      <p
+        key={i}
+        className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
+      >
+        {attempt}
+      </p>
+    ))}
+  </div>
+)}
+
                   
                   {/* Courses */}
                   <div>
@@ -362,46 +345,7 @@ export default function Education({ id }) {
           ))}
         </div>
 
-        {/* Learning Stats */}
-        <div className="relative group mb-16">
-          <div className="absolute -inset-4 rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D]/10 via-transparent to-[#009F9D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          </div>
-          
-          <div className="relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm">
-            <h3 className="text-2xl font-bold text-white mb-8 text-center group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#009F9D] group-hover:to-[#00FFFC] transition-all duration-300">
-              Learning Statistics
-            </h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white mb-2">3.8+</div>
-                <div className="text-gray-400 text-sm">Current GPA</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white mb-2">50+</div>
-                <div className="text-gray-400 text-sm">Courses Completed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white mb-2">1000+</div>
-                <div className="text-gray-400 text-sm">Learning Hours</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white mb-2">15+</div>
-                <div className="text-gray-400 text-sm">Certifications</div>
-              </div>
-            </div>
-            
-            <div className="mt-8 pt-6 border-t border-gray-800">
-              <div className="text-center">
-                <div className="inline-flex items-center gap-2 text-gray-400">
-                  <span className="w-3 h-3 rounded-full bg-[#009F9D] animate-pulse"></span>
-                  <span className="text-sm">Continuously learning and growing</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Call to Action */}
         <div className="text-center">

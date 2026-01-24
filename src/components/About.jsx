@@ -54,8 +54,8 @@ export default function About({ id }) {
 
   const stats = [
     { icon: <Cpu className="w-5 h-5" />, label: "Tech Stack", value: "8+" },
-    { icon: <Target className="w-5 h-5" />, label: "Projects", value: "15+" },
-    { icon: <Rocket className="w-5 h-5" />, label: "Experience", value: "2 Years" },
+    { icon: <Target className="w-5 h-5" />, label: "Projects", value: "6+" },
+    { icon: <Rocket className="w-5 h-5" />, label: "University", value: "2 Years" },
     { icon: <Zap className="w-5 h-5" />, label: "Passion", value: "100%" },
   ];
 

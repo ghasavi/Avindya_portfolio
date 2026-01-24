@@ -7,11 +7,15 @@ import Projects from "@/components/Projects";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Header from "@/components/Header";
-import { Github, Linkedin, Mail, Download, ArrowRight, Terminal, Code } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ArrowRight, Terminal, Code, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Home() {
   const [codeParticles, setCodeParticles] = useState([]);
   const [mounted, setMounted] = useState(false);
+  const [currentSection, setCurrentSection] = useState("hero");
+  const [showUpArrow, setShowUpArrow] = useState(false);
+
+  const sections = ["hero", "about", "skills", "projects", "education", "contact"];
 
   useEffect(() => {
     // Generate code particles on client side only
@@ -25,11 +29,57 @@ export default function Home() {
     }));
     setCodeParticles(particles);
     setMounted(true);
+
+    // Scroll listener for up arrow visibility
+    const handleScroll = () => {
+      setShowUpArrow(window.scrollY > 500);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setCurrentSection(sectionId);
+    }
+  };
+
+  const scrollToNext = () => {
+    const currentIndex = sections.indexOf(currentSection);
+    const nextIndex = (currentIndex + 1) % sections.length;
+    scrollToSection(sections[nextIndex]);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentSection("hero");
+  };
 
   return (
     <>
       <Header />
+
+      {/* Section Navigation Arrow (Down) */}
+      <button
+        onClick={scrollToNext}
+        className="fixed right-8 bottom-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-[#009F9D] to-[#007F7D] flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_rgba(0,159,157,0.6)] hover:scale-110 transition-all duration-300 group animate-bounce"
+        aria-label="Scroll to next section"
+      >
+        <ChevronDown className="w-6 h-6 text-white group-hover:translate-y-0.5 transition-transform" />
+      </button>
+
+      {/* Back to Top Arrow (Up) */}
+      {showUpArrow && (
+        <button
+          onClick={scrollToTop}
+          className="fixed left-8 bottom-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-gray-900 to-black border border-[#009F9D]/50 flex items-center justify-center shadow-2xl hover:shadow-[0_0_30px_rgba(0,159,157,0.6)] hover:scale-110 hover:border-[#009F9D] transition-all duration-300 group"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="w-6 h-6 text-[#009F9D] group-hover:-translate-y-0.5 transition-transform" />
+        </button>
+      )}
 
       {/* Banner Section - Dark Theme */}
       <section
@@ -59,11 +109,10 @@ export default function Home() {
                 key={particle.id}
                 className="absolute text-[#009F9D]/30 text-xs font-mono"
                 style={{
-  left: `${particle.left}%`,
-  top: `${particle.top}%`,
-  animation: `float ${particle.duration}s ease-in-out ${particle.delay}s infinite`
-}}
-
+                  left: `${particle.left}%`,
+                  top: `${particle.top}%`,
+                  animation: `float ${particle.duration}s ease-in-out ${particle.delay}s infinite`
+                }}
               >
                 {particle.text}
               </div>
@@ -132,6 +181,10 @@ export default function Home() {
             
             <a
               href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("projects");
+              }}
               className="inline-flex items-center justify-center gap-2 border-2 border-[#009F9D] text-[#009F9D] px-8 py-3 rounded-lg hover:bg-[#009F9D] hover:text-black hover:shadow-[0_0_25px_rgba(0,159,157,0.5)] transition-all hover:scale-105 font-medium group"
             >
               View Projects
@@ -175,7 +228,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Projects</p>
-                  <p className="font-bold text-white">Completed</p>
+                  <p className="font-bold text-white">2 Completed</p>
                 </div>
               </div>
             </div>
@@ -194,6 +247,18 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Down arrow indicator for hero section */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <button
+            onClick={() => scrollToSection("about")}
+            className="flex flex-col items-center gap-2 text-gray-400 hover:text-[#009F9D] transition-colors group"
+            aria-label="Scroll to about section"
+          >
+            <span className="text-sm">Scroll Down</span>
+            <ChevronDown className="w-8 h-8 group-hover:translate-y-1 transition-transform" />
+          </button>
         </div>
       </section>
 

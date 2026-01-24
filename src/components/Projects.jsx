@@ -91,75 +91,73 @@ export default function Projects({ id }) {
 
   const projects = [
     {
-      name: "Anime Recommendation Web App",
-      desc: "Intelligent anime discovery platform that suggests shows based on mood, genre preferences, and viewing history using collaborative filtering algorithms.",
+      name: "Anime Recommendation Web App (AniRec)",
+      desc: "Anime Recommendation Web App that provides personalized suggestions through a concise 5-question quiz. Users can also explore and browse anime efficiently, organized by categories for seamless discovery.",
       img: "/projects/anime.png",
-      tech: ["React", "Node.js", "MongoDB", "TensorFlow.js", "Tailwind"],
+      tech: ["React", "Node.js", "MongoDB", "Tailwind" , "Supabase" , "vercel" , "postmon", "render"],
       github: "https://github.com/ghasAvi",
       live: "https://anime-recommender-demo.netlify.app",
       category: "Full Stack",
-      status: "Completed"
+      status: "In Development"
     },
     {
-      name: "Hand-Drawn Art E-Commerce",
-      desc: "Digital marketplace platform connecting artists with collectors, featuring secure payments, artist portfolios, and commission management system.",
-      img: "/projects/art.png",
-      tech: ["Next.js", "Stripe", "Firebase", "Cloudinary", "TypeScript"],
+      name: "Hand-Drawn Art E-Commerce (Pixaku)",
+      desc: "Digital marketplace platform connecting artists with collectors, featuring secure payments and commission management system.",
+      img: "/projects/pixaku.png",
+      tech: ["Node.js", "Stripe", "Supabase", "Ngrok", "React" , "MongoDB", "Tailwind" , "vercel" , "postmon", "render"],
       github: "https://github.com/ghasAvi",
       live: "https://art-marketplace-demo.netlify.app",
       category: "E-Commerce",
-      status: "In Development"
+      status: "Completed"
     },
     {
       name: "Personal Portfolio Website",
       desc: "Modern, responsive portfolio showcasing projects with interactive elements, dark/light themes, and performance-optimized animations.",
       img: "/projects/portfolio.png",
-      tech: ["Next.js", "Tailwind", "Framer Motion", "Vercel", "GraphQL"],
+      tech: ["Next.js", "Tailwind", "Framer Motion", "Vercel", "Formfree"],
       github: "https://github.com/ghasAvi",
       live: "https://avindya-ghs.vercel.app",
       category: "Portfolio",
       status: "Live"
     },
     {
-      name: "Task Management Tool",
-      desc: "Productivity application with real-time collaboration, AI task prioritization, calendar integration, and team workflow automation.",
-      img: "/projects/tasks.png",
-      tech: ["React", "Express", "Socket.io", "PostgreSQL", "Redis"],
+      name: "Online Ordering & Reservation System ",
+      desc: "University Online Ordering & Reservation System built with the MERN stack. Handles order and payment management, including secure transactions via Stripe and refunds through Ngrok, ensuring seamless and reliable user experience.omation.",
+      img: "/projects/royalbakes.png",
+      tech: ["React", "Express", "Socket.io", "MongoDB", "Tailwind", "Node.js", "Stripe","Ngrok"],
       github: "https://github.com/ghasAvi",
       live: "https://taskflow-demo.netlify.app",
       category: "Productivity",
       status: "Completed"
     },
     {
-      name: "Blog Platform",
-      desc: "Content management system with markdown editor, SEO optimization, analytics dashboard, and newsletter subscription management.",
-      img: "/projects/blog.png",
-      tech: ["Next.js", "Sanity.io", "NextAuth", "Vercel", "SWR"],
+      name: "Android Habit Tracking App (MIMI Days)",
+      desc: "University Android Habit Tracking App that helps users manage habits with add, edit, and delete functionality, track daily water intake reminders, and log current mood, using SharedPreferences for persistent data storage.",
+      img: "/projects/mimidays.png",
+      tech: ["XML", "Kotlin"],
       github: "https://github.com/ghasAvi",
       live: "https://tech-blog-demo.netlify.app",
       category: "CMS",
-      status: "Live"
+      status: "Completed"
     },
     {
-      name: "AI Code Assistant",
-      desc: "Developer tool that provides intelligent code suggestions, documentation lookup, and automated refactoring using GPT-4 integration.",
-      img: "/projects/code-assistant.png",
-      tech: ["TypeScript", "OpenAI API", "VS Code Extension", "Node.js", "WebSocket"],
+      name: "Counselling Support Android App (Mood Lift)",
+      desc: "University Android Studio project for a Counselling Support Android app that delivers practical tips and guidance when users feel angry, sad, or anxious, helping them manage their emotions effectively.",
+      img: "/projects/moodlift.png",
+      tech: ["Kotlin", "XML"],
       github: "https://github.com/ghasAvi",
       live: null,
       category: "Developer Tool",
-      status: "In Development"
+      status: "Completed"
     },
   ];
 
   const categories = [
     { name: "All", count: projects.length },
-    { name: "Full Stack", count: 2 },
-    { name: "E-Commerce", count: 1 },
+    { name: "Full Stack", count: 3 },
+    { name: "E-Commerce", count: 2 },
     { name: "Portfolio", count: 1 },
-    { name: "Productivity", count: 1 },
-    { name: "CMS", count: 1 },
-    { name: "Developer Tool", count: 1 },
+    { name: "Moblile App", count: 2 },
   ];
 
   const [activeCategory, setActiveCategory] = useState("All");
@@ -409,15 +407,19 @@ export default function Projects({ id }) {
               <span className="relative text-white font-semibold">View All Projects</span>
             </a>
             
-            <a
-              href="#contact"
-              className="relative inline-flex items-center gap-2 px-8 py-3 rounded-lg overflow-hidden group/cta2"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/cta2:opacity-0 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/cta2:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
-              <span className="relative text-white font-semibold">Start a Project</span>
-              <Zap className="relative w-5 h-5 text-white group-hover/cta2:animate-pulse" />
-            </a>
+            
+  <a
+  onClick={() => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  }}
+  className="relative inline-flex items-center gap-2 px-8 py-3 rounded-lg overflow-hidden group/cta2 bg-gradient-to-r from-[#009F9D] to-[#007F7D] text-white transition-all duration-500"
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/cta2:opacity-0 transition-opacity duration-500"></div>
+  <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/cta2:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
+  <span className="relative text-white font-semibold">Start a Project</span>
+  <Zap className="relative w-5 h-5 text-white group-hover/cta2:animate-pulse" />
+</a>
+
           </div>
         </div>
       </div>
