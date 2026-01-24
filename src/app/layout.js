@@ -1,7 +1,6 @@
 // src/app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ThemeProviderWrapper from "../components/ThemeProviderWrapper"; // client component wrapper
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,11 +20,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Only wrap children that need client interactivity */}
-        <ThemeProviderWrapper>
-          {children}
-        </ThemeProviderWrapper>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
       </body>
     </html>
   );

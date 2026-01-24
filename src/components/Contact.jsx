@@ -3,48 +3,17 @@
 import { Mail, Phone, MapPin, Send, MessageSquare, Sparkles, Globe, Linkedin, Github, MailCheck } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
-// ClientOnly wrapper
-function ClientOnly({ children }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
-  return children;
-}
-
-// Floating icons
-function FloatingIcons() {
-  const [icons, setIcons] = useState([]);
-  
-  useEffect(() => {
-    setIcons([...Array(12)].map(() => ({
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: 6 + Math.random() * 4,
-      delay: Math.random() * 3,
-      icon: ['💬','📧','📱','📍','📝','✉️'][Math.floor(Math.random() * 6)]
-    })));
-  }, []);
-  
-  if (!icons.length) return null;
-  
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {icons.map((i, idx) => (
-        <div key={idx} className="absolute text-2xl md:text-3xl opacity-5"
-             style={{ left: `${i.left}%`, top: `${i.top}%`, animation: `iconFloat ${i.duration}s ease-in-out ${i.delay}s infinite` }}>
-          {i.icon}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function Contact({ id }) {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState(null);
+  const [mounted, setMounted] = useState(false);
   const formRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const contactInfo = [
     {
@@ -135,6 +104,18 @@ export default function Contact({ id }) {
     }
   };
 
+  // Static particle positions (won't cause hydration mismatch)
+  const particlePositions = [
+    { left: '10%', top: '15%' },
+    { left: '25%', top: '60%' },
+    { left: '45%', top: '25%' },
+    { left: '60%', top: '70%' },
+    { left: '75%', top: '40%' },
+    { left: '85%', top: '80%' },
+    { left: '20%', top: '85%' },
+    { left: '90%', top: '20%' }
+  ];
+
   return (
     <section id={id} className="relative py-20 px-6 md:px-10 overflow-hidden">
       {/* Background Elements */}
@@ -156,11 +137,7 @@ export default function Contact({ id }) {
         ))}
       </div>
 
-      {/* Floating Message Icons */}
-      <ClientOnly>
-        <FloatingIcons />
-      </ClientOnly>
-
+      
       <div className="relative max-w-6xl mx-auto z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -276,20 +253,18 @@ export default function Contact({ id }) {
             <div className="absolute -inset-4 rounded-2xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D]/10 via-transparent to-[#009F9D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               
-              {/* Animated Form Particles */}
-              <ClientOnly>
-                {[...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-[1px] h-[1px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      animation: `formParticle ${2 + Math.random() * 2}s ease-in-out ${i * 0.3}s infinite`
-                    }}
-                  />
-                ))}
-              </ClientOnly>
+              {/* Animated Form Particles - Only render after mount */}
+              {mounted && particlePositions.map((pos, i) => (
+                <div
+                  key={i}
+                  className="absolute w-[1px] h-[1px] bg-[#009F9D] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-formParticle"
+                  style={{
+                    left: pos.left,
+                    top: pos.top,
+                    animationDelay: `${i * 0.3}s`
+                  }}
+                />
+              ))}
             </div>
             
             <div className="relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm group-hover:border-[#009F9D]/50 transition-all duration-500">
@@ -351,7 +326,7 @@ export default function Contact({ id }) {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Your Message"
-                      rows="5"
+                      rows={5}
                       required
                       className="w-full px-4 py-3 bg-black/30 border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#009F9D] focus:ring-2 focus:ring-[#009F9D]/20 transition-all duration-300 resize-none"
                     />
@@ -368,12 +343,17 @@ export default function Contact({ id }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full px-6 py-3 rounded-lg font-semibold transition-all duration-500 overflow-hidden ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
+                      className={`relative w-full px-6 py-3 rounded-lg font-semibold transition-all duration-500 overflow-hidden ${
+                        isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+                      }`}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/button:opacity-0 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/button:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
-                      
-                      <span className="relative flex items-center justify-center gap-2">
+                      {/* Base gradient */}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/button:opacity-0 transition-opacity duration-500"></div>
+
+                      {/* Hover gradient */}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/button:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
+
+                      <span className="relative flex items-center justify-center gap-2 text-white">
                         {isSubmitting ? (
                           <>
                             <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -387,12 +367,10 @@ export default function Contact({ id }) {
                         )}
                       </span>
                     </button>
-                    
-                    {/* Button Glow Effect */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-[#009F9D] to-[#00FFFC] rounded-lg blur opacity-0 group-hover/button:opacity-30 transition-opacity duration-500"></div>
                   </div>
                 </form>
               )}
+
               
               <div className="mt-8 pt-6 border-t border-gray-800">
                 <p className="text-gray-400 text-sm text-center">
@@ -429,11 +407,6 @@ export default function Contact({ id }) {
           100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
         }
 
-        @keyframes iconFloat {
-          0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.05; }
-          50% { transform: translateY(-20px) translateX(10px) rotate(5deg); opacity: 0.02; }
-        }
-
         @keyframes formParticle {
           0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
           50% { transform: translateY(-5px) translateX(5px); opacity: 1; }
@@ -451,6 +424,10 @@ export default function Contact({ id }) {
         .animate-gradient-x {
           background-size: 200% 200%;
           animation: gradient-x 3s ease infinite;
+        }
+
+        .animate-formParticle {
+          animation: formParticle 3s ease-in-out infinite;
         }
       `}</style>
     </section>

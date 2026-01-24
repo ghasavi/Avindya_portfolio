@@ -206,16 +206,16 @@ html {
 
 /* globals.css */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
 }
 
 body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
+  background: var(--background);
+  color: var(--foreground);
 }

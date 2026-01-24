@@ -38,13 +38,15 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setCurrentSection(sectionId);
-    }
-  };
+ const scrollToSection = (sectionId) => {
+   if (typeof window !== "undefined") {
+     const element = document.getElementById(sectionId);
+     if (element) {
+       element.scrollIntoView({ behavior: "smooth" });
+     }
+   }
+   setCurrentSection(sectionId);
+ };
 
   const scrollToNext = () => {
     const currentIndex = sections.indexOf(currentSection);
@@ -53,9 +55,11 @@ export default function Home() {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setCurrentSection("hero");
-  };
+  if (typeof window !== "undefined") {
+     window.scrollTo({ top: 0, behavior: "smooth" });
+   }
+   setCurrentSection("hero");
+ };
 
   return (
     <>
