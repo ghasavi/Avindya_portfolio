@@ -88,76 +88,151 @@ function FloatingTechTags({ tech }) {
 export default function Projects({ id }) {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [activeTech, setActiveTech] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
       name: "Anime Recommendation Web App (AniRec)",
       desc: "Anime Recommendation Web App that provides personalized suggestions through a concise 5-question quiz. Users can also explore and browse anime efficiently, organized by categories for seamless discovery.",
       img: "/projects/anime.png",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind" , "Supabase" , "vercel" , "postmon", "render"],
+      tech: ["React", "Node.js", "MongoDB", "Tailwind", "Supabase", "Vercel", "Postmon", "Render"],
       github: "https://github.com/ghasAvi",
       live: "https://anime-recommender-demo.netlify.app",
       category: "Full Stack",
-      status: "In Development"
+      status: "In Development",
+      report: {
+        overview:
+          "AniRec is a personalized anime recommendation platform that suggests anime based on user preferences collected through a short quiz.",
+        problem:
+          "Anime platforms overwhelm users with too many choices, making it hard to find shows that actually match their taste.",
+        solution:
+          "A 5-question quiz-based system that filters anime intelligently and presents curated results instantly.",
+        features: [
+          "Quiz-based recommendations",
+          "Category-wise anime browsing",
+          "Responsive UI",
+          "Fast filtering logic"
+        ],
+        future:
+          "User accounts, watchlists, AI-based recommendations, and social sharing."
+      }
     },
     {
       name: "Hand-Drawn Art E-Commerce (Pixaku)",
       desc: "Digital marketplace platform connecting artists with collectors, featuring secure payments and commission management system.",
       img: "/projects/pixaku.png",
-      tech: ["Node.js", "Stripe", "Supabase", "Ngrok", "React" , "MongoDB", "Tailwind" , "vercel" , "postmon", "render"],
+      tech: ["Node.js", "Stripe", "Supabase", "Ngrok", "React", "MongoDB", "Tailwind", "Vercel", "Postmon", "Render"],
       github: "https://github.com/ghasAvi",
       live: "https://art-marketplace-demo.netlify.app",
       category: "E-Commerce",
-      status: "Completed"
+      status: "Completed",
+      report: {
+        overview:
+          "Pixaku is a digital marketplace dedicated to hand-drawn art, connecting art works whcih were drawn by myself",
+        problem:
+          "Artists struggle to find a dedicated platform for hand-drawn art, while collectors have difficulty discovering unique, authentic pieces.",
+        solution:
+          "A specialized e-commerce platform with artist profiles, secure commission systems, and curated art collections.",
+        features: [
+          "Artist portfolio management",
+          "Secure commission system",
+          "Stripe payment integration",
+          "Real-time order tracking",
+          "Art collection curation"
+        ],
+        future:
+          "AR preview feature, artist mentoring programs, art competitions, and international shipping integration."
+      }
     },
     {
-      name: "Personal Portfolio Website",
-      desc: "Modern, responsive portfolio showcasing projects with interactive elements, dark/light themes, and performance-optimized animations.",
-      img: "/projects/portfolio.png",
-      tech: ["Next.js", "Tailwind", "Framer Motion", "Vercel", "Formfree"],
-      github: "https://github.com/ghasAvi",
-      live: "https://avindya-ghs.vercel.app",
-      category: "Portfolio",
-      status: "Live"
-    },
-    {
-      name: "Online Ordering & Reservation System ",
-      desc: "University Online Ordering & Reservation System built with the MERN stack. Handles order and payment management, including secure transactions via Stripe and refunds through Ngrok, ensuring seamless and reliable user experience.omation.",
+      name: "Online Ordering & Reservation System",
+      desc: "University Online Ordering & Reservation System built with the MERN stack. Handles order and payment management, including secure transactions via Stripe and refunds through Ngrok.",
       img: "/projects/royalbakes.png",
-      tech: ["React", "Express", "Socket.io", "MongoDB", "Tailwind", "Node.js", "Stripe","Ngrok"],
-      github: "https://github.com/ghasAvi",
-      live: "https://taskflow-demo.netlify.app",
+      tech: ["React", "Express", "Socket.io", "MongoDB", "Tailwind", "Node.js", "Stripe", "Ngrok"],
+      github: "https://github.com/wayodyavitharka/royalbakes.git",
+      live: null,
       category: "Productivity",
-      status: "Completed"
+      status: "Completed",
+      report: {
+        overview:
+          "A comprehensive university ordering system for managing food orders, table reservations, and payment processing for royalbakes restaurant.",
+        problem:
+          "Food services face long queues, manual order taking errors, and inefficient reservation management.",
+        solution:
+          "Digital ordering system with real-time updates, automated reservations, and integrated payment processing.",
+        features: [
+          "Real-time order tracking",
+          "Table reservation system",
+          "Payment processing with Stripe",
+          "Order history and receipts",
+          "Admin dashboard"
+        ],
+        future:
+          "Mobile app integration, meal plan management, and inventory tracking."
+      }
     },
     {
       name: "Android Habit Tracking App (MIMI Days)",
-      desc: "University Android Habit Tracking App that helps users manage habits with add, edit, and delete functionality, track daily water intake reminders, and log current mood, using SharedPreferences for persistent data storage.",
+      desc: "University Android Habit Tracking App that helps users manage habits with add, edit, and delete functionality, track daily water intake reminders, and log current mood.",
       img: "/projects/mimidays.png",
       tech: ["XML", "Kotlin"],
-      github: "https://github.com/ghasAvi",
-      live: "https://tech-blog-demo.netlify.app",
-      category: "CMS",
-      status: "Completed"
+      github: "https://github.com/ghasavi/MAD_LabExam_03.git",
+      live: null,
+      category: "Mobile App",
+      status: "Completed",
+      report: {
+        overview:
+          "MIMI Days is a minimalist habit tracking app designed to help users build positive routines and maintain daily consistency.",
+        problem:
+          "People struggle to maintain consistency with habits due to lack of tracking, reminders, and visual progress indicators.",
+        solution:
+          "Simple yet powerful habit tracker with streak tracking, reminders, and mood logging to keep users motivated.",
+        features: [
+          "Habit creation and management",
+          "Daily streak tracking",
+          "Water intake reminders",
+          "Mood logging",
+          "Progress visualization"
+        ],
+        future:
+          "Social accountability features, habit challenges, data export, and wearable integration."
+      }
     },
     {
       name: "Counselling Support Android App (Mood Lift)",
-      desc: "University Android Studio project for a Counselling Support Android app that delivers practical tips and guidance when users feel angry, sad, or anxious, helping them manage their emotions effectively.",
+      desc: "University Android Studio project for a Counselling Support Android app that delivers practical tips and guidance when users feel angry, sad, or anxious.",
       img: "/projects/moodlift.png",
       tech: ["Kotlin", "XML"],
-      github: "https://github.com/ghasAvi",
+      github: "https://github.com/ghasavi/MAD_LabExam_02.git",
       live: null,
-      category: "Developer Tool",
-      status: "Completed"
+      category: "Mobile App",
+      status: "Completed",
+      report: {
+        overview:
+          "Mood Lift is a mental wellness app providing immediate emotional support and coping strategies for moments of distress.",
+        problem:
+          "Many people experience emotional distress without immediate access to professional help or coping resources.",
+        solution:
+          "Instant access to curated coping strategies, breathing exercises, and mood tracking tools in a private, accessible format.",
+        features: [
+          "Emotion-based coping strategies",
+          "Guided breathing exercises",
+          "Mood tracking and history",
+          "Emergency contact setup",
+          "Privacy-focused design"
+        ],
+        future:
+          "AI chat support, therapist matching, community support groups, and crisis intervention resources."
+      }
     },
   ];
 
   const categories = [
     { name: "All", count: projects.length },
-    { name: "Full Stack", count: 3 },
-    { name: "E-Commerce", count: 2 },
-    { name: "Portfolio", count: 1 },
-    { name: "Moblile App", count: 2 },
+    { name: "Full Stack", count: 1 },
+    { name: "E-Commerce", count: 1 },
+    { name: "Productivity", count: 1 },
+    { name: "Mobile App", count: 2 },
   ];
 
   const [activeCategory, setActiveCategory] = useState("All");
@@ -249,6 +324,7 @@ export default function Projects({ id }) {
                 setHoveredProject(null);
                 setActiveTech(null);
               }}
+              onClick={() => setSelectedProject(project)}
             >
               {/* Animated Background */}
               <div className="absolute -inset-4 rounded-3xl overflow-hidden">
@@ -264,7 +340,7 @@ export default function Projects({ id }) {
               <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-500"></div>
               
               {/* Project Card */}
-              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm group-hover:border-[#009F9D]/50 transition-all duration-500">
+              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800 backdrop-blur-sm group-hover:border-[#009F9D]/50 transition-all duration-500 cursor-pointer">
                 {/* Image Container */}
                 <div className="relative h-56 overflow-hidden">
                   {/* Status Badge */}
@@ -301,23 +377,25 @@ export default function Projects({ id }) {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <div className="flex gap-4">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.github, '_blank');
+                        }}
                         className="p-3 rounded-full bg-gradient-to-br from-gray-900 to-black border border-gray-800 text-white hover:border-[#009F9D] hover:shadow-[0_0_20px_rgba(0,159,157,0.4)] transition-all duration-300 hover:scale-110"
                       >
                         <Github className="w-5 h-5" />
-                      </a>
+                      </button>
                       {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(project.live, '_blank');
+                          }}
                           className="p-3 rounded-full bg-gradient-to-br from-[#009F9D] to-[#007F7D] text-white hover:shadow-[0_0_20px_rgba(0,159,157,0.5)] transition-all duration-300 hover:scale-110"
                         >
                           <Eye className="w-5 h-5" />
-                        </a>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -407,22 +485,124 @@ export default function Projects({ id }) {
               <span className="relative text-white font-semibold">View All Projects</span>
             </a>
             
-            
-  <a
-  onClick={() => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  }}
-  className="relative inline-flex items-center gap-2 px-8 py-3 rounded-lg overflow-hidden group/cta2 bg-gradient-to-r from-[#009F9D] to-[#007F7D] text-white transition-all duration-500"
->
-  <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/cta2:opacity-0 transition-opacity duration-500"></div>
-  <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/cta2:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
-  <span className="relative text-white font-semibold">Start a Project</span>
-  <Zap className="relative w-5 h-5 text-white group-hover/cta2:animate-pulse" />
-</a>
-
+            <a
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="relative inline-flex items-center gap-2 px-8 py-3 rounded-lg overflow-hidden group/cta2 bg-gradient-to-r from-[#009F9D] to-[#007F7D] text-white transition-all duration-500"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] to-[#007F7D] opacity-100 group-hover/cta2:opacity-0 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#009F9D] via-[#00FFFC] to-[#009F9D] opacity-0 group-hover/cta2:opacity-100 transition-opacity duration-500 animate-gradient-x"></div>
+              <span className="relative text-white font-semibold">Start a Project</span>
+              <Zap className="relative w-5 h-5 text-white group-hover/cta2:animate-pulse" />
+            </a>
           </div>
         </div>
       </div>
+
+      {/* PROJECT DETAIL MODAL */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-[999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="relative w-full max-w-7xl h-[85vh] bg-gradient-to-br from-gray-900 to-black rounded-2xl border border-gray-800 overflow-hidden grid md:grid-cols-5">
+            {/* LEFT – REPORT */}
+            <div className="md:col-span-2 p-6 overflow-y-auto">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                {selectedProject.name}
+              </h2>
+
+              <section className="mb-5">
+                <h3 className="text-[#009F9D] font-semibold mb-1">Overview</h3>
+                <p className="text-gray-400 text-sm">
+                  {selectedProject.report.overview}
+                </p>
+              </section>
+
+              <section className="mb-5">
+                <h3 className="text-[#009F9D] font-semibold mb-1">Problem</h3>
+                <p className="text-gray-400 text-sm">
+                  {selectedProject.report.problem}
+                </p>
+              </section>
+
+              <section className="mb-5">
+                <h3 className="text-[#009F9D] font-semibold mb-1">Solution</h3>
+                <p className="text-gray-400 text-sm">
+                  {selectedProject.report.solution}
+                </p>
+              </section>
+
+              <section className="mb-5">
+                <h3 className="text-[#009F9D] font-semibold mb-2">Key Features</h3>
+                <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                  {selectedProject.report.features.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="mb-5">
+                <h3 className="text-[#009F9D] font-semibold mb-2">Tech Stack</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tech.map(t => (
+                    <span
+                      key={t}
+                      className="px-3 py-1 rounded-lg bg-black/60 border border-gray-700 text-xs text-gray-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              <section className="mb-6">
+                <h3 className="text-[#009F9D] font-semibold mb-1">Future Improvements</h3>
+                <p className="text-gray-400 text-sm">
+                  {selectedProject.report.future}
+                </p>
+              </section>
+
+              <div className="flex gap-4">
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  className="px-4 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition flex items-center gap-2"
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </a>
+                {selectedProject.live && (
+                  <a
+                    href={selectedProject.live}
+                    target="_blank"
+                    className="px-4 py-2 rounded-lg bg-[#009F9D] text-black font-semibold hover:opacity-80 transition flex items-center gap-2"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Live Site
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* RIGHT – WEBSITE PREVIEW */}
+            <div className="md:col-span-3 relative">
+              <img
+                src={selectedProject.img}
+                alt={selectedProject.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-black/70 to-transparent"></div>
+            </div>
+
+            {/* CLOSE */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 text-white text-2xl hover:text-red-400 transition bg-black/50 p-1 rounded-full w-8 h-8 flex items-center justify-center"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Custom Animations */}
       <style >{`

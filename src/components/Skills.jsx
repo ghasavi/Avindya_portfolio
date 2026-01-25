@@ -92,7 +92,7 @@ export default function Skills({ id }) {
   const skillCategories = [
     {
       title: "Programming Languages",
-      skills: ["HTML", "Java", "JavaScript", "PHP", "Python", "C#", "C++", "Kotlin"],
+      skills: ["HTML", "Java", "JavaScript", "PHP", "C#", "C++", "Kotlin"],
       icon: <Code2 className="w-6 h-6" />,
       color: "from-blue-500/20 to-cyan-500/20",
     },
@@ -127,24 +127,10 @@ export default function Skills({ id }) {
     "Java": 90,
     "JavaScript": 88,
     "PHP": 85,
-    "Python": 82,
     "C#": 80,
     "C++": 78,
     "Kotlin": 75,
-    "React": 92,
-    "Next.js": 88,
-    "Tailwind CSS": 95,
-    "Vite": 85,
-    "Node.js": 90,
-    "Express.js": 87,
-    "Java servlets": 83,
-    "MongoDB": 88,
-    "MySQL": 85,
-    "Git": 93,
-    "VS Code": 96,
-    "Postman": 89,
-    "Eclipse": 84,
-    "Android Studio": 82,
+    
   };
 
   return (

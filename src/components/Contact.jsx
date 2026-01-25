@@ -20,14 +20,12 @@ export default function Contact({ id }) {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
       value: "ghasavindya@gmail.com",
-      link: "mailto:ghasavindya@gmail.com",
       color: "from-[#009F9D] to-[#007F7D]"
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Phone",
       value: "+94 77 397 7465",
-      link: "tel:+94773977465",
       color: "from-purple-500 to-pink-500"
     },
     {
