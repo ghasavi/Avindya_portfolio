@@ -94,7 +94,7 @@ export default function Projects({ id }) {
     {
       name: "Anime Recommendation Web App (AniRec)",
       desc: "Anime Recommendation Web App that provides personalized suggestions through a concise 5-question quiz. Users can also explore and browse anime efficiently, organized by categories for seamless discovery.",
-      img: "/projects/anime.png",
+      img: "/projects/anirec.png",
       tech: ["React", "Node.js", "MongoDB", "Tailwind", "Supabase", "Vercel", "Postmon", "Render"],
       github: "https://github.com/ghasAvi",
       live: "https://anime-recommender-demo.netlify.app",
