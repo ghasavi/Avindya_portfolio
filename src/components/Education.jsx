@@ -119,7 +119,7 @@ export default function Education({ id }) {
     {
       degree: "Professional Certifications",
       institution: "Online Platforms",
-      year: "2022 - Present",
+      year: "Present(2026)",
       duration: "Continuous",
       details: "Complementing formal education with industry-recognized certifications in modern web technologies and development practices.",
       courses: ["Frontend Development", "Backend Development", "DevOps", "UI/UX Design"],
