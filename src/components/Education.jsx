@@ -107,26 +107,15 @@ export default function Education({ id }) {
       year: "2021 - 2023",
       duration: "2 Years",
       details: "Completed Advanced Levels in Physical Science Stream with distinction in Mathematics. ",
-       attempts: [
-    "1st Attempt: 2C, 1S",
-    "2nd Attempt: 1C, 2S"
-  ],
+      attempts: [
+        "1st Attempt: 2C, 1S",
+        "2nd Attempt: 1C, 2S"
+      ],
       courses: ["Combined Mathematics", "Physics", "Chemistry"],
       location: "Galle, Sri Lanka",
       color: "from-purple-500 to-pink-500",
       icon: <BookOpen className="w-6 h-6" />
-    },
-    {
-      degree: "Professional Certifications",
-      institution: "Online Platforms",
-      year: "Present(2026)",
-      duration: "Continuous",
-      details: "Complementing formal education with industry-recognized certifications in modern web technologies and development practices.",
-      courses: ["Frontend Development", "Backend Development", "DevOps", "UI/UX Design"],
-      location: "Online",
-      color: "from-orange-500 to-yellow-500",
-      icon: <Award className="w-6 h-6" />
-    },
+    }
   ];
 
   const timeline = [
@@ -232,7 +221,7 @@ export default function Education({ id }) {
         </div>
 
         {/* Education Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
           {educationList.map((edu, index) => (
             <div 
               key={edu.degree}
@@ -298,19 +287,18 @@ export default function Education({ id }) {
                   </p>
                   
                   {/* Attempts (A/L only) */}
-{edu.attempts && (
-  <div className="mb-6 space-y-1">
-    {edu.attempts.map((attempt, i) => (
-      <p
-        key={i}
-        className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
-      >
-        {attempt}
-      </p>
-    ))}
-  </div>
-)}
-
+                  {edu.attempts && (
+                    <div className="mb-6 space-y-1">
+                      {edu.attempts.map((attempt, i) => (
+                        <p
+                          key={i}
+                          className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
+                        >
+                          {attempt}
+                        </p>
+                      ))}
+                    </div>
+                  )}
                   
                   {/* Courses */}
                   <div>
@@ -344,8 +332,6 @@ export default function Education({ id }) {
             </div>
           ))}
         </div>
-
-        
 
         {/* Call to Action */}
         <div className="text-center">

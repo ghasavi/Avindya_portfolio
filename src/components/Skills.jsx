@@ -92,13 +92,13 @@ export default function Skills({ id }) {
   const skillCategories = [
     {
       title: "Programming Languages",
-      skills: ["HTML", "Java", "JavaScript", "PHP", "C#", "C++", "Kotlin"],
+      skills: ["HTML", "Java", "JavaScript", "Python","PHP", "C#", "C++", "Kotlin"],
       icon: <Code2 className="w-6 h-6" />,
       color: "from-blue-500/20 to-cyan-500/20",
     },
     {
       title: "Frontend",
-      skills: ["React", "Next.js", "Tailwind CSS", "Vite"],
+      skills: ["React", "Next.js", "Tailwind CSS", "Vite" , "Framer Motion"],
       icon: <Layout className="w-6 h-6" />,
       color: "from-purple-500/20 to-pink-500/20",
     },
@@ -116,7 +116,7 @@ export default function Skills({ id }) {
     },
     {
       title: "Tools",
-      skills: ["Git", "VS Code", "Postman", "Eclipse", "Android Studio"],
+      skills: ["Git", "VS Code", "Postman", "Eclipse", "Android Studio" , "IntelliJ IDEA" , "Supabase"],
       icon: <Wrench className="w-6 h-6" />,
       color: "from-yellow-500/20 to-amber-500/20",
     },
@@ -126,6 +126,7 @@ export default function Skills({ id }) {
     "HTML": 95,
     "Java": 90,
     "JavaScript": 88,
+    "Python": 86,
     "PHP": 85,
     "C#": 80,
     "C++": 78,

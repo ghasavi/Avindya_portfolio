@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Education from "@/components/Education";
+import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Header from "@/components/Header";
 import { Github, Linkedin, Mail, Download, ArrowRight, Terminal, Code, ChevronDown, ChevronUp } from "lucide-react";
@@ -15,7 +16,7 @@ export default function Home() {
   const [currentSection, setCurrentSection] = useState("hero");
   const [showUpArrow, setShowUpArrow] = useState(false);
 
-  const sections = ["hero", "about", "skills", "projects", "education", "contact"];
+  const sections = ["hero", "about", "skills", "projects", "education", "certifications", "contact"];
 
   useEffect(() => {
     // Generate code particles on client side only
@@ -284,6 +285,10 @@ export default function Home() {
         <div className="h-px bg-gradient-to-r from-transparent via-black to-transparent mx-6 md:mx-20 my-12"></div>
         
         <Education id="education" />
+
+        <div className="h-px bg-gradient-to-r from-transparent via-[#009F9D] to-transparent mx-6 md:mx-20 my-12 shadow-[0_0_15px_rgba(0,159,157,0.3)]"></div>
+
+        <Certifications id="certifications" />
         
         <div className="h-px bg-gradient-to-r from-transparent via-[#009F9D] to-transparent mx-6 md:mx-20 my-12 shadow-[0_0_15px_rgba(0,159,157,0.3)]"></div>
         
