@@ -24,11 +24,11 @@ export default function Certification({ id }) {
       color: "from-emerald-500 to-teal-500"
     },
     {
-      title: "Python For Beginners",
+      title: "Programming in Python - 1. Python for Beginners",
       provider: "Moratuwa University",
       year: "2026",
-      image: "/certificates/uiux.png",
-      credentialUrl: "https://www.coursera.org/google-certificates",
+      image: "/certificates/moratuwa_pyton1.png",
+      credentialUrl: "https://open.uom.lk/lms/mod/customcert/view.php?id=675&downloadown=1",
       skills: ["Python"],
       color: "from-pink-500 to-purple-500"
     }
