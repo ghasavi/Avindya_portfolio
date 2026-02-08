@@ -27,9 +27,18 @@ export default function Certification({ id }) {
       title: "Programming in Python - 1. Python for Beginners",
       provider: "Moratuwa University",
       year: "2026",
-      image: "/certificates/moratuwa_pyton1.png",
+      image: "/certificates/moratuwa_python1.png",
       credentialUrl: "https://open.uom.lk/lms/mod/customcert/view.php?id=675&downloadown=1",
       skills: ["Python"],
+      color: "from-pink-500 to-purple-500"
+    },
+    {
+      title: "Programming in Python - 2. Python Programming",
+      provider: "Moratuwa University",
+      year: "2026",
+      image: "/certificates/moratuwa_python2.png",
+      credentialUrl: "https://open.uom.lk/lms/mod/customcert/view.php?id=838&downloadown=1",
+      skills: ["Python","Git"],
       color: "from-pink-500 to-purple-500"
     }
   ];
