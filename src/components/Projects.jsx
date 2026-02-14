@@ -97,7 +97,7 @@ export default function Projects({ id }) {
       img: "/projects/anirec.png",
       tech: ["React", "Node.js", "MongoDB", "Tailwind", "Supabase", "Vercel", "Postmon", "Render"],
       github: "https://github.com/ghasAvi",
-      live: "https://anime-recommender-demo.netlify.app",
+      live: "https://anime-project-frontend-ten.vercel.app",
       category: "Full Stack",
       status: "In Development",
       report: {
@@ -123,7 +123,7 @@ export default function Projects({ id }) {
       img: "/projects/pixaku.png",
       tech: ["Node.js", "Stripe", "Supabase", "Ngrok", "React", "MongoDB", "Tailwind", "Vercel", "Postmon", "Render"],
       github: "https://github.com/ghasAvi",
-      live: "https://art-marketplace-demo.netlify.app",
+      live: "https://frontend-six-chi-15.vercel.app",
       category: "E-Commerce",
       status: "Completed",
       report: {
