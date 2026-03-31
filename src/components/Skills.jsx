@@ -116,7 +116,7 @@ export default function Skills({ id }) {
     },
     {
       title: "Tools",
-      skills: ["Git", "VS Code", "Postman", "Eclipse", "Android Studio" , "IntelliJ IDEA" , "Supabase"],
+      skills: ["Git", "VS Code", "Postman", "Eclipse", "Android Studio" , "IntelliJ IDEA" , "Supabase" , "Spring Boot", "Docker", "Kubernetes"],
       icon: <Wrench className="w-6 h-6" />,
       color: "from-yellow-500/20 to-amber-500/20",
     },

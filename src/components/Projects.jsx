@@ -92,11 +92,94 @@ export default function Projects({ id }) {
 
   const projects = [
     {
+      name: "Typing Web App",
+      desc: "A typing web application designed to help users improve their typing speed and accuracy through interactive exercises and real-time feedback.",
+      img: "/projects/typingApp.png",
+      tech: ["Java","Spring Boot", "Sqlite", "IntelliJ IDEA" , "Postman"],
+      github: "https://github.com/ghasavi/typing-app-backend.git",
+      live: "",
+      category: "Web Application",
+      status: "In Development",
+      report: {
+        overview:
+      "Typing Web App is a web-based application developed using Java and Spring Boot to help users improve their typing speed, accuracy, and overall keyboard proficiency through structured typing exercises.",
+      
+    problem:
+      "Many users struggle to improve typing speed due to lack of structured practice tools and real-time performance feedback. Existing typing platforms often lack customization, progress tracking, or backend-based user management.",
+      
+    solution:
+      "This application provides structured typing exercises, calculates typing speed and accuracy in real-time, and stores user progress using a backend-powered system built with Spring Boot and SQLite.",
+      
+    features: [
+      "Real-time typing speed (WPM) calculation",
+      "Typing accuracy measurement",
+      "Practice exercises with different difficulty levels",
+      "User progress tracking",
+      "Backend API using Spring Boot",
+      "Lightweight SQLite database integration"
+    ],
+    
+    future:
+      "User authentication system, leaderboard feature, AI-based typing suggestions, multiplayer typing challenges, and improved UI/UX enhancements."
+  }
+    },
+   {
+      name: "Micro-Loan-Connect Web App",
+      desc: "A financial web application designed to streamline loan processing and customer management.",
+      img: "/projects/loanConnect.png",
+      tech: ["React", "Node.js","MongoDB", "Postmon"],
+      github: "https://github.com/imeshweerasuria/microloan-connect.git",
+      live: "",
+      category: "Full Stack",
+      status: "In Development",
+      report: {
+        overview:
+          "Micro-Loan-Connect is a financial web application designed to streamline loan processing and customer management.",
+        problem:
+          "Financial platforms often suffer from complex processes, leading to inefficiencies in loan processing and customer service.",
+        solution:
+          "A scalable application architecture that integrates various financial functionalities into a unified platform.",
+        features: [
+          "Category-wise financial browsing",
+          "Responsive UI",
+          "Fast filtering logic"
+        ],
+        future:
+          "AI-based advices for customers, improved customer support features, and integration with financial institutions."
+      }
+    },
+    {
+      name: "Microservices-Health-Care Web App (MediBook)",
+      desc: "A microservices-based health care web application designed to streamline patient management and medical record-keeping.",
+      img: "/projects/healthCare.png",
+      tech: ["React", "Node.js", "Docker","Kubernetes","MongoDB", "Tailwind", "Postmon"],
+      github: "https://github.com/imeshweerasuria/smart-healthcare-microservices.git",
+      live: "",
+      category: "Full Stack",
+      status: "In Development",
+      report: {
+        overview:
+          "MediBook is a microservices-based health care web application designed to streamline patient management and medical record-keeping.",
+        problem:
+          "Health care platforms often suffer from siloed systems, leading to inefficiencies in patient care and data management.",
+        solution:
+          "A scalable microservices architecture that integrates various health care functionalities into a unified platform.",
+        features: [
+          "Microservices-based services",
+          "Category-wise health care browsing",
+          "Responsive UI",
+          "Fast filtering logic"
+        ],
+        future:
+          "AI-based advices for patients, doctor-patient communication features, and integration with wearable health devices."
+      }
+    },
+    {
       name: "Anime Recommendation Web App (AniRec)",
       desc: "Anime Recommendation Web App that provides personalized suggestions through a concise 5-question quiz. Users can also explore and browse anime efficiently, organized by categories for seamless discovery.",
       img: "/projects/anirec.png",
       tech: ["React", "Node.js", "MongoDB", "Tailwind", "Supabase", "Vercel", "Postmon", "Render"],
-      github: "https://github.com/ghasAvi",
+      github: "https://github.com/ghasavi/Anime-Project-Frontend.git",
       live: "https://anime-project-frontend-ten.vercel.app",
       category: "Full Stack",
       status: "In Development",
@@ -122,7 +205,7 @@ export default function Projects({ id }) {
       desc: "Digital marketplace platform connecting artists with collectors, featuring secure payments and commission management system.",
       img: "/projects/pixaku.png",
       tech: ["Node.js", "Stripe", "Supabase", "Ngrok", "React", "MongoDB", "Tailwind", "Vercel", "Postmon", "Render"],
-      github: "https://github.com/ghasAvi",
+      github: "https://github.com/ghasavi/backend.git",
       live: "https://frontend-six-chi-15.vercel.app",
       category: "E-Commerce",
       status: "Completed",
@@ -229,10 +312,11 @@ export default function Projects({ id }) {
 
   const categories = [
     { name: "All", count: projects.length },
-    { name: "Full Stack", count: 1 },
+    { name: "Full Stack", count: 3 },
     { name: "E-Commerce", count: 1 },
     { name: "Productivity", count: 1 },
     { name: "Mobile App", count: 2 },
+    { name: "Web Application", count: 6 }
   ];
 
   const [activeCategory, setActiveCategory] = useState("All");
