@@ -122,7 +122,7 @@ export default function Education({ id }) {
     { year: "2020", event: "Started A/L Studies", icon: "🎓" },
     { year: "2023", event: "Started University", icon: "🏫" },
     { year: "2026", event: "Expected Industry Internship", icon: "👨‍💼" },
-    { year: "2027", event: "Expected Graduation", icon: "🎉" },
+    { year: "2028", event: "Expected Graduation", icon: "🎉" },
   ];
 
   return (

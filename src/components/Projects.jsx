@@ -92,63 +92,6 @@ export default function Projects({ id }) {
 
   const projects = [
     {
-      name: "Typing Web App",
-      desc: "A typing web application designed to help users improve their typing speed and accuracy through interactive exercises and real-time feedback.",
-      img: "/projects/typingApp.png",
-      tech: ["Java","Spring Boot", "Sqlite", "IntelliJ IDEA" , "Postman"],
-      github: "https://github.com/ghasavi/typing-app-backend.git",
-      live: "",
-      category: "Web Application",
-      status: "In Development",
-      report: {
-        overview:
-      "Typing Web App is a web-based application developed using Java and Spring Boot to help users improve their typing speed, accuracy, and overall keyboard proficiency through structured typing exercises.",
-      
-    problem:
-      "Many users struggle to improve typing speed due to lack of structured practice tools and real-time performance feedback. Existing typing platforms often lack customization, progress tracking, or backend-based user management.",
-      
-    solution:
-      "This application provides structured typing exercises, calculates typing speed and accuracy in real-time, and stores user progress using a backend-powered system built with Spring Boot and SQLite.",
-      
-    features: [
-      "Real-time typing speed (WPM) calculation",
-      "Typing accuracy measurement",
-      "Practice exercises with different difficulty levels",
-      "User progress tracking",
-      "Backend API using Spring Boot",
-      "Lightweight SQLite database integration"
-    ],
-    
-    future:
-      "User authentication system, leaderboard feature, AI-based typing suggestions, multiplayer typing challenges, and improved UI/UX enhancements."
-  }
-    },
-   {
-      name: "Micro-Loan-Connect Web App",
-      desc: "A financial web application designed to streamline loan processing and customer management.",
-      img: "/projects/loanConnect.png",
-      tech: ["React", "Node.js","MongoDB", "Postmon"],
-      github: "https://github.com/imeshweerasuria/microloan-connect.git",
-      live: "",
-      category: "Full Stack",
-      status: "In Development",
-      report: {
-        overview:
-          "Micro-Loan-Connect is a financial web application designed to streamline loan processing and customer management.",
-        problem:
-          "Financial platforms often suffer from complex processes, leading to inefficiencies in loan processing and customer service.",
-        solution:
-          "A scalable application architecture that integrates various financial functionalities into a unified platform.",
-        features: [
-          "Category-wise financial browsing",
-          "Responsive UI",
-          "Fast filtering logic"
-        ],
-        future:
-          "AI-based advices for customers, improved customer support features, and integration with financial institutions."
-      }
-    },
-    {
       name: "Microservices-Health-Care Web App (MediBook)",
       desc: "A microservices-based health care web application designed to streamline patient management and medical record-keeping.",
       img: "/projects/healthCare.png",
@@ -156,7 +99,7 @@ export default function Projects({ id }) {
       github: "https://github.com/imeshweerasuria/smart-healthcare-microservices.git",
       live: "",
       category: "Full Stack",
-      status: "In Development",
+      status: "Completed",
       report: {
         overview:
           "MediBook is a microservices-based health care web application designed to streamline patient management and medical record-keeping.",
@@ -175,29 +118,28 @@ export default function Projects({ id }) {
       }
     },
     {
-      name: "Anime Recommendation Web App (AniRec)",
-      desc: "Anime Recommendation Web App that provides personalized suggestions through a concise 5-question quiz. Users can also explore and browse anime efficiently, organized by categories for seamless discovery.",
-      img: "/projects/anirec.png",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind", "Supabase", "Vercel", "Postmon", "Render"],
-      github: "https://github.com/ghasavi/Anime-Project-Frontend.git",
-      live: "https://anime-project-frontend-ten.vercel.app",
+      name: "Micro-Loan-Connect Web App",
+      desc: "A financial web application designed to streamline loan processing and customer management.",
+      img: "/projects/loanConnect.png",
+      tech: ["React", "Node.js","MongoDB", "Postmon", "Express.js","  Stripe","Vercel", "Render"],
+      github: "https://github.com/imeshweerasuria/microloan-connect.git",
+      live: "",
       category: "Full Stack",
-      status: "In Development",
+      status: "Completed",
       report: {
         overview:
-          "AniRec is a personalized anime recommendation platform that suggests anime based on user preferences collected through a short quiz.",
+          "Micro-Loan-Connect is a financial web application designed to streamline loan processing and customer management.",
         problem:
-          "Anime platforms overwhelm users with too many choices, making it hard to find shows that actually match their taste.",
+          "Financial platforms often suffer from complex processes, leading to inefficiencies in loan processing and customer service.",
         solution:
-          "A 5-question quiz-based system that filters anime intelligently and presents curated results instantly.",
+          "A scalable application architecture that integrates various financial functionalities into a unified platform.",
         features: [
-          "Quiz-based recommendations",
-          "Category-wise anime browsing",
+          "Category-wise financial browsing",
           "Responsive UI",
           "Fast filtering logic"
         ],
         future:
-          "User accounts, watchlists, AI-based recommendations, and social sharing."
+          "AI-based advices for customers, improved customer support features, and integration with financial institutions."
       }
     },
     {
@@ -228,13 +170,39 @@ export default function Projects({ id }) {
       }
     },
     {
+      name: "Anime Recommendation Web App (AniRec)",
+      desc: "Anime Recommendation Web App that provides personalized suggestions through a concise 5-question quiz. Users can also explore and browse anime efficiently, organized by categories for seamless discovery.",
+      img: "/projects/anirec.png",
+      tech: ["React", "Node.js", "MongoDB", "Tailwind", "Supabase", "Vercel", "Postmon", "Render"],
+      github: "https://github.com/ghasavi/Anime-Project-Frontend.git",
+      live: "https://anime-project-frontend-ten.vercel.app",
+      category: "Full Stack",
+      status: "Completed",
+      report: {
+        overview:
+          "AniRec is a personalized anime recommendation platform that suggests anime based on user preferences collected through a short quiz.",
+        problem:
+          "Anime platforms overwhelm users with too many choices, making it hard to find shows that actually match their taste.",
+        solution:
+          "A 5-question quiz-based system that filters anime intelligently and presents curated results instantly.",
+        features: [
+          "Quiz-based recommendations",
+          "Category-wise anime browsing",
+          "Responsive UI",
+          "Fast filtering logic"
+        ],
+        future:
+          "User accounts, watchlists, AI-based recommendations, and social sharing."
+      }
+    },
+    {
       name: "Online Ordering & Reservation System",
       desc: "University Online Ordering & Reservation System built with the MERN stack. Handles order and payment management, including secure transactions via Stripe and refunds through Ngrok.",
       img: "/projects/royalbakes.png",
       tech: ["React", "Express", "Socket.io", "MongoDB", "Tailwind", "Node.js", "Stripe", "Ngrok"],
       github: "https://github.com/wayodyavitharka/royalbakes.git",
       live: null,
-      category: "Productivity",
+      category: "Full Stack",
       status: "Completed",
       report: {
         overview:
@@ -252,6 +220,29 @@ export default function Projects({ id }) {
         ],
         future:
           "Mobile app integration, meal plan management, and inventory tracking."
+      }
+    },
+    {
+      name: "Portfolio Website",
+      desc: "Personal portfolio website showcasing projects, skills, and experience.",
+      img: "/projects/portfolio.png",
+      tech: ["React", "Next.js", "Tailwind", "Framer Motion"],
+      github: "https://github.com/ghasavi/Avindya_portfolio.git",
+      live: "https://avindya-portfolio.vercel.app/",
+      category: "Web Application",
+      status: "Completed",
+      report: {
+        overview:
+          "A personal portfolio website designed to showcase projects, skills, and experience in a visually appealing and interactive manner.",
+        features: [
+          "Project showcase with detailed descriptions",
+          "Skills section with proficiency indicators",
+          "Experience timeline with interactive elements",
+          "Contact form with validation and email integration",
+          "Responsive design for all devices",
+        ],
+        future:
+          "Integration with a blog section, AI-powered project recommendations, and enhanced animations for an even more engaging user experience."
       }
     },
     {
@@ -308,18 +299,54 @@ export default function Projects({ id }) {
           "AI chat support, therapist matching, community support groups, and crisis intervention resources."
       }
     },
-  ];
-
-  const categories = [
-    { name: "All", count: projects.length },
-    { name: "Full Stack", count: 3 },
-    { name: "E-Commerce", count: 1 },
-    { name: "Productivity", count: 1 },
-    { name: "Mobile App", count: 2 },
-    { name: "Web Application", count: 6 }
+    {
+      name: "Typing Web App",
+      desc: "A typing web application designed to help users improve their typing speed and accuracy through interactive exercises and real-time feedback.",
+      img: "/projects/typingApp.png",
+      tech: ["Java","Spring Boot", "Sqlite", "IntelliJ IDEA" , "Postman"],
+      github: "https://github.com/ghasavi/typing-app-backend.git",
+      live: "",
+      category: "Web Application",
+      status: "In Development",
+      report: {
+        overview:
+      "Typing Web App is a web-based application developed using Java and Spring Boot to help users improve their typing speed, accuracy, and overall keyboard proficiency through structured typing exercises.",
+      
+    problem:
+      "Many users struggle to improve typing speed due to lack of structured practice tools and real-time performance feedback. Existing typing platforms often lack customization, progress tracking, or backend-based user management.",
+      
+    solution:
+      "This application provides structured typing exercises, calculates typing speed and accuracy in real-time, and stores user progress using a backend-powered system built with Spring Boot and SQLite.",
+      
+    features: [
+      "Real-time typing speed (WPM) calculation",
+      "Typing accuracy measurement",
+      "Practice exercises with different difficulty levels",
+      "User progress tracking",
+      "Backend API using Spring Boot",
+      "Lightweight SQLite database integration"
+    ],
+    
+    future:
+      "User authentication system, leaderboard feature, AI-based typing suggestions, multiplayer typing challenges, and improved UI/UX enhancements."
+  }
+    },
   ];
 
   const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = [
+  { name: "All", count: projects.length },
+  { name: "Full Stack", count: projects.filter(p => p.category === "Full Stack").length },
+  { name: "E-Commerce", count: projects.filter(p => p.category === "E-Commerce").length },
+  { name: "Mobile App", count: projects.filter(p => p.category === "Mobile App").length },
+  { name: "Web Application", count: projects.filter(p => p.category === "Web Application").length }
+];
+
+  const filteredProjects =
+  activeCategory === "All"
+    ? projects
+    : projects.filter(project => project.category === activeCategory);
 
   return (
     <section 
@@ -399,7 +426,7 @@ export default function Projects({ id }) {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <div 
               key={project.name}
               className="relative group"
