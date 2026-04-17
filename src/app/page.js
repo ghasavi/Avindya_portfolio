@@ -233,7 +233,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Projects</p>
-                  <p className="font-bold text-white">2 Completed</p>
+                  <p className="font-bold text-white">8 Completed</p>
                 </div>
               </div>
             </div>
