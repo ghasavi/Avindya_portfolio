@@ -123,7 +123,7 @@ export default function Projects({ id }) {
       img: "/projects/loanConnect.png",
       tech: ["React", "Node.js","MongoDB", "Postmon", "Express.js","  Stripe","Vercel", "Render"],
       github: "https://github.com/imeshweerasuria/microloan-connect.git",
-      live: "",
+      live: "https://microloan-connect.vercel.app/",
       category: "Full Stack",
       status: "Completed",
       report: {

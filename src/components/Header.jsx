@@ -121,7 +121,7 @@ export default function Header() {
               
               {/* Download CV Button in Header */}
               <a
-                href="/Avindya_G.H.S._CV.pdf"
+                href="/AVINDYA_G_H_S_CV.pdf"
                 download
                 className="ml-4 px-4 py-2 bg-gradient-to-r from-[#009F9D] to-[#007F7D] text-white rounded-lg hover:shadow-[0_0_15px_rgba(0,159,157,0.4)] hover:scale-105 transition-all flex items-center gap-2"
               >
@@ -163,7 +163,7 @@ export default function Header() {
                   
                   {/* Mobile Download Button */}
                   <a
-                    href="/Avindya_G.H.S._CV.pdf"
+                    href="/AVINDYA_G_H_S_CV.pdf"
                     download
                     className="mt-4 py-3 px-6 bg-gradient-to-r from-[#009F9D] to-[#007F7D] text-white rounded-lg hover:shadow-[0_0_15px_rgba(0,159,157,0.4)] transition-all flex items-center justify-center gap-2 font-semibold"
                     onClick={() => setIsOpen(false)}

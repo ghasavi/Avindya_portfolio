@@ -176,7 +176,7 @@ export default function Home() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="/Avindya_G.H.S._CV.pdf"
+              href="/AVINDYA_G_H_S_CV.pdf"
               download
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#009F9D] to-[#007F7D] text-white px-8 py-3 rounded-lg hover:shadow-[0_0_25px_rgba(0,159,157,0.5)] hover:scale-105 transition-all font-medium group"
             >
