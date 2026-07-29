@@ -198,9 +198,9 @@ export default function Projects({ id }) {
     {
       name: "Typing accuracy checking web application (Mizzy Type)",
       desc: "A typing web application designed to help users improve their typing speed and accuracy through interactive exercises and real-time feedback.",
-      img: "/projects/typingApp.png",
+      img: "/projects/Mizzytype.png",
       tech: ["Java","Spring Boot", "React" , "postgresql" , "IntelliJ IDEA", "Postman", "Vercel" , "Render", "Neon"],
-      github: "https://github.com/ghasavi/typing-app-backend.git",
+      github: "https://github.com/ghasavi/typing-app.git",
       live: "https://typing-app-gray.vercel.app",
       category: "Web Application",
       status: "Completed",
@@ -228,7 +228,7 @@ export default function Projects({ id }) {
   }
     },
     {
-      name: "Online Ordering & Reservation System",
+      name: "Online Ordering & Reservation System (Royal Bakes)",
       desc: "University Online Ordering & Reservation System built with the MERN stack. Handles order and payment management, including secure transactions via Stripe and refunds through Ngrok.",
       img: "/projects/royalbakes.png",
       tech: ["React", "Express", "Socket.io", "MongoDB", "Tailwind", "Node.js", "Stripe", "Ngrok"],
