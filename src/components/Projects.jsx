@@ -196,6 +196,38 @@ export default function Projects({ id }) {
       }
     },
     {
+      name: "Typing accuracy checking web application (Mizzy Type)",
+      desc: "A typing web application designed to help users improve their typing speed and accuracy through interactive exercises and real-time feedback.",
+      img: "/projects/typingApp.png",
+      tech: ["Java","Spring Boot", "React" , "postgresql" , "IntelliJ IDEA", "Postman", "Vercel" , "Render", "Neon"],
+      github: "https://github.com/ghasavi/typing-app-backend.git",
+      live: "https://typing-app-gray.vercel.app",
+      category: "Web Application",
+      status: "Completed",
+      report: {
+        overview:
+      "Typing Web App is a web-based application developed using Java and Spring Boot to help users improve their typing speed, accuracy, and overall keyboard proficiency through structured typing exercises.",
+      
+    problem:
+      "Many users struggle to improve typing speed due to lack of structured practice tools and real-time performance feedback. Existing typing platforms often lack customization, progress tracking, or backend-based user management.",
+      
+    solution:
+      "This application provides structured typing exercises, calculates typing speed and accuracy in real-time, and stores user progress using a backend-powered system built with Spring Boot and SQLite.",
+      
+    features: [
+      "Real-time typing speed (WPM) calculation",
+      "Typing accuracy measurement",
+      "Practice exercises with different difficulty levels",
+      "User progress tracking",
+      "Backend API using Spring Boot",
+      "Lightweight postgresql database integration"
+    ],
+    
+    future:
+      "AI-based typing suggestions, multiplayer typing challenges, and improved UI/UX enhancements."
+  }
+    },
+    {
       name: "Online Ordering & Reservation System",
       desc: "University Online Ordering & Reservation System built with the MERN stack. Handles order and payment management, including secure transactions via Stripe and refunds through Ngrok.",
       img: "/projects/royalbakes.png",
@@ -298,38 +330,6 @@ export default function Projects({ id }) {
         future:
           "AI chat support, therapist matching, community support groups, and crisis intervention resources."
       }
-    },
-    {
-      name: "Typing Web App",
-      desc: "A typing web application designed to help users improve their typing speed and accuracy through interactive exercises and real-time feedback.",
-      img: "/projects/typingApp.png",
-      tech: ["Java","Spring Boot", "Sqlite", "IntelliJ IDEA" , "Postman"],
-      github: "https://github.com/ghasavi/typing-app-backend.git",
-      live: "",
-      category: "Web Application",
-      status: "In Development",
-      report: {
-        overview:
-      "Typing Web App is a web-based application developed using Java and Spring Boot to help users improve their typing speed, accuracy, and overall keyboard proficiency through structured typing exercises.",
-      
-    problem:
-      "Many users struggle to improve typing speed due to lack of structured practice tools and real-time performance feedback. Existing typing platforms often lack customization, progress tracking, or backend-based user management.",
-      
-    solution:
-      "This application provides structured typing exercises, calculates typing speed and accuracy in real-time, and stores user progress using a backend-powered system built with Spring Boot and SQLite.",
-      
-    features: [
-      "Real-time typing speed (WPM) calculation",
-      "Typing accuracy measurement",
-      "Practice exercises with different difficulty levels",
-      "User progress tracking",
-      "Backend API using Spring Boot",
-      "Lightweight SQLite database integration"
-    ],
-    
-    future:
-      "User authentication system, leaderboard feature, AI-based typing suggestions, multiplayer typing challenges, and improved UI/UX enhancements."
-  }
     },
   ];
 
